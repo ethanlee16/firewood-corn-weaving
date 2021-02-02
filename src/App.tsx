@@ -1,17 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import "./App.css";
-import FullscreenVideo from "./FullscreenVideo";
+import BrowserWarning from "./components/BrowserWarning";
+import Metrics from "./modules/Metrics";
+import Preamble from "./modules/Preamble";
+
+import FullscreenVideo from "./components/FullscreenVideo";
+import Intro from "./modules/Intro";
+import Language from "./modules/Language";
+
+const modules = [
+  <Preamble />,
+  <FullscreenVideo videoId="witz" />,
+  <Intro />,
+  <FullscreenVideo videoId="firewood" />,
+  <Language />,
+  <Metrics />,
+];
 
 function App() {
-  const [playing, setPlaying] = useState(false);
+  const [moduleIndex, setModuleIndex] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={() => setPlaying(true)}>Start</button>
-        {playing && <FullscreenVideo videoId="witz" />}
-        <p>Weather Bodies</p>
-      </header>
+      {modules[moduleIndex]}
+      <BrowserWarning />
+      <button
+        className="next-btn"
+        onClick={() => {
+          setModuleIndex((prevIndex: number) => {
+            if (prevIndex === modules.length - 1) {
+              return 0;
+            }
+            return prevIndex + 1;
+          });
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 }

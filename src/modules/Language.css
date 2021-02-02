@@ -1,0 +1,13 @@
+.language-container {
+  height: 100vh;
+  overflow: scroll;
+  font-size: 14pt;
+  padding: 20px;
+}
+
+.language-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
