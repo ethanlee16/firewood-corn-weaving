@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import FullscreenVideo from "../components/FullscreenVideo";
+import PullToContinue from "../components/PullToContinue";
 import shuffle from "../shuffle";
 import useWraparoundIndex from "../useWraparoundIndex";
 import "./Language.css";
@@ -19,12 +20,25 @@ const Title = () => {
 const HiddenTextOne = () => {
   const [textState, setTextState] = useState<"hidden" | "main">("hidden");
   const [scrolling, setScrolling] = useState(false);
+  const mainTextContainer = useRef<HTMLDivElement | null>(null);
   const introTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     introTimer.current = setTimeout(() => {
       setTextState("main");
     }, 4000);
+
+    const scrollContainer = document.querySelector("#scrollable");
+    if (scrollContainer) {
+      (scrollContainer as HTMLDivElement).onscroll = () => {
+        if (mainTextContainer.current) {
+          mainTextContainer.current.style.top = `${-(
+            scrollContainer.scrollTop *
+            (mainTextContainer.current.scrollHeight / scrollContainer.scrollHeight)
+          )}px`;
+        }
+      };
+    }
 
     return () => {
       introTimer.current && clearTimeout(introTimer.current);
@@ -63,64 +77,60 @@ const HiddenTextOne = () => {
         setScrolling(false);
       }}
     >
-      {textState === "hidden" ? (
-        <>
-          <p>
-            <b>Osbaldo</b>: My friends! Today I’ll show the work that men do here in San Juan
-            Atitan. Today, I’ll show you how to get firewood. First, I take rope, my bag, and a
-            machete. Today I’m going to a place called “Tzaq txa’m”. It belongs to the town. I’m
-            taking my machete and ax. The ax is to cut down the big trees. I’m going now and I’ll
-            come back later on. 
-          </p>
-          <p>
-            Hello, I’m back. I went to pick up the firewoods at the town’s forest. I went to Tzaq
-            Txa’m, I was able to find some and here they are. I’m very happy to find dry firewood.
-            I’m a little tired, but it’s part of the job here. We know that I cannot carry more than
-            what I have here. For those who have horses, they can bring more using the horses. Now
-            that I have brought this, I want to take a break. After the break, I’ll chop the wood.
-            It’s raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for
-            the fire. It’s going to be used to cook tortillas, make <em>chuj</em>.
-          </p>
-          <p>
-            Now I’m going to chop it after my break. I’ll take the ropes first. I need to pull out
-            my ax from it. It’s part of the tradition men must carry their axes together with the
-            wood while carrying. This video is about showing you about the firewood. I’m going to
-            wrap my rope, so it’s ready for the next trip. 
-          </p>
-          <p>
-            Right now, I’m going to chop my wood. This big piece of wood right here, I used it to
-            chop the rest of the wood. Let me put my machete here. Let’s chop some wood, shall we?
-            They look ready to make fire like these ones. Here’s a big one. I usually use another
-            one that goes under the big one. This makes it very easy to chop the wood. After I chop
-            the wood, I stack them together. Sometimes they are not dry, so I stack them and hope
-            they dry out. Making fire is part of daily life and we know that making fire with wood
-            is another way to survive. We don’t use a stove, but only wood. As I mentioned before,
-            this wood is used to make tortillas to set fire inside the <em>chuj</em>. No gas is used
-            in any of these. So this is the work we as men do here. 
-          </p>
-          <p>
-            Today, you’ve seen that I went and brought wood. I chopped them and I’m going to pile
-            them together. If the wood is not dry, we usually put them to the sun. After the wood is
-            dry enough, from there women should take care of the rest. She would use the wood to
-            make tortillas or cook corn or Chuj. Here, you want to wonder what type of tree is this
-            one. Well, this one is q’antze. There are oak trees which are the best. Also, there is
-            pine as well, these are the types of trees here. Above all, this is the work that men do
-            here in Xjan Xwan. Thank you for watching.
-          </p>
-          <p>
-            <b>Ana</b>: Hello my friends, I’d like to show you how we make tortillas in San Juan
-            Atitan Guatemala. First, I need to make fire and I use <em>ocote</em> (Montezuma pine).
-            It’s getting dark and I want to make some fire. My friends are coming and I need to make
-            tortillas. Come inside my kitchen. Let’s make fire. I’ll make fire under my comal. This
-            is how we make fire here. I need more wood.  I went yesterday to pick up the wood in the
-            forest. Before I make tortillas, I must make fire. Let’s clean the comal and put away
-            the lighter. Today, I’ll be making tortillas and this is hydrated lime. We use hydrated
-            lime everytime to make tortillas or otherwise the comal won’t work. This is my cooking
-            pot with my corn . This is my sink right here.
-          </p>
-        </>
-      ) : (
-        <>
+      <p>
+        <b>Osbaldo</b>: My friends! Today I’ll show the work that men do here in San Juan Atitan.
+        Today, I’ll show you how to get firewood. First, I take rope, my bag, and a machete. Today
+        I’m going to a place called “Tzaq txa’m”. It belongs to the town. I’m taking my machete and
+        ax. The ax is to cut down the big trees. I’m going now and I’ll come back later on. 
+      </p>
+      <p>
+        Hello, I’m back. I went to pick up the firewoods at the town’s forest. I went to Tzaq Txa’m,
+        I was able to find some and here they are. I’m very happy to find dry firewood. I’m a little
+        tired, but it’s part of the job here. We know that I cannot carry more than what I have
+        here. For those who have horses, they can bring more using the horses. Now that I have
+        brought this, I want to take a break. After the break, I’ll chop the wood. It’s raining and
+        I think I’ll chop it now. I’ll start chopping it now, so it’s ready for the fire. It’s going
+        to be used to cook tortillas, make <em>chuj</em>.
+      </p>
+      <p>
+        Now I’m going to chop it after my break. I’ll take the ropes first. I need to pull out my ax
+        from it. It’s part of the tradition men must carry their axes together with the wood while
+        carrying. This video is about showing you about the firewood. I’m going to wrap my rope, so
+        it’s ready for the next trip. 
+      </p>
+      <p>
+        Right now, I’m going to chop my wood. This big piece of wood right here, I used it to chop
+        the rest of the wood. Let me put my machete here. Let’s chop some wood, shall we? They look
+        ready to make fire like these ones. Here’s a big one. I usually use another one that goes
+        under the big one. This makes it very easy to chop the wood. After I chop the wood, I stack
+        them together. Sometimes they are not dry, so I stack them and hope they dry out. Making
+        fire is part of daily life and we know that making fire with wood is another way to survive.
+        We don’t use a stove, but only wood. As I mentioned before, this wood is used to make
+        tortillas to set fire inside the <em>chuj</em>. No gas is used in any of these. So this is
+        the work we as men do here. 
+      </p>
+      <p>
+        Today, you’ve seen that I went and brought wood. I chopped them and I’m going to pile them
+        together. If the wood is not dry, we usually put them to the sun. After the wood is dry
+        enough, from there women should take care of the rest. She would use the wood to make
+        tortillas or cook corn or Chuj. Here, you want to wonder what type of tree is this one.
+        Well, this one is q’antze. There are oak trees which are the best. Also, there is pine as
+        well, these are the types of trees here. Above all, this is the work that men do here in
+        Xjan Xwan. Thank you for watching.
+      </p>
+      <p>
+        <b>Ana</b>: Hello my friends, I’d like to show you how we make tortillas in San Juan Atitan
+        Guatemala. First, I need to make fire and I use <em>ocote</em> (Montezuma pine). It’s
+        getting dark and I want to make some fire. My friends are coming and I need to make
+        tortillas. Come inside my kitchen. Let’s make fire. I’ll make fire under my comal. This is
+        how we make fire here. I need more wood.  I went yesterday to pick up the wood in the
+        forest. Before I make tortillas, I must make fire. Let’s clean the comal and put away the
+        lighter. Today, I’ll be making tortillas and this is hydrated lime. We use hydrated lime
+        everytime to make tortillas or otherwise the comal won’t work. This is my cooking pot with
+        my corn . This is my sink right here.
+      </p>
+      {textState === "main" && (
+        <div className="language-main-text-one" ref={mainTextContainer}>
           <p>Correo a la gente de Xjan Xwan</p>
           <p>
             Silvia, Osbaldo, Hermenegildo, Ana, Javier, Elizandro, Mario, y todos los estimados
@@ -149,7 +159,7 @@ const HiddenTextOne = () => {
             en temas profundas de la vida, la sobrevivencia, el medio ambiente, y el clima en ambos
             Xjan Xwan y su propio lugar.
           </p>
-        </>
+        </div>
       )}
     </div>
   );
@@ -159,7 +169,11 @@ const HiddenTextOne = () => {
  * TODO: Subtitle format, or centered.
  */
 const StandaloneQuote = ({ children }: React.PropsWithChildren<{}>) => {
-  return <p>{children}</p>;
+  return (
+    <div className="language-quote-container">
+      <p className="language-quote">{children}</p>
+    </div>
+  );
 };
 
 const probabilisticRanges = [
@@ -261,65 +275,93 @@ const HiddenTextTwo = () => {
     };
   }, [flicker]);
 
-  return textState === "main" ? (
-    <p>
-      Aunque nunca podemos traducir la esencia entera de sus videos a inglés o en español, como
-      lenguas del colonizador, queríamos destacar unos momentos significados a la audiencia
-      occidental. En los textos que viene en español, voy a explicar un poco do nuestras
-      motivaciones en la presentación artística de sus videos.
-    </p>
-  ) : (
-    quotesOrdered[quoteIndex]
+  return (
+    <StandaloneQuote>
+      {textState === "main" ? (
+        <p>
+          Aunque nunca podemos traducir la esencia entera de sus videos a inglés o en español, como
+          lenguas del colonizador, queríamos destacar unos momentos significados a la audiencia
+          occidental. En los textos que viene en español, voy a explicar un poco do nuestras
+          motivaciones en la presentación artística de sus videos.
+        </p>
+      ) : (
+        quotesOrdered[quoteIndex]
+      )}
+    </StandaloneQuote>
   );
 };
 
-const measures = [
-  <Title />,
-  <HiddenTextOne />,
-  <StandaloneQuote>
-    “Now that I have brought this, I want to take a break. After the break, I’ll chop the wood. It’s
-    raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for the fire.
-    Making fire is part of daily life and we know that making fire with wood is another way to
-    survive.”
-  </StandaloneQuote>,
-  <HiddenTextTwo />,
-  <FullscreenVideo videoId="03-Weaving-Subtitle-03" hasSubtitles />,
-  <StandaloneQuote>
-    Encontremos un hermoso ritmo en como ustedes alternaban entre mostrar con acciones y explicar
-    con palabras. Aunque no podíamos entender (por ahora) todas sus palabras sin la ayuda de Mintz
-    and Silvia, entendíamos la importancia de estas tareas diarias – cortando leña, cosechando maíz
-    y frijol, preparando tortillas, y tejiendo ropa. Yo pude ver que estas cosas no solo son una
-    manera de sobrevivir en Xjan Xwan, pero también son una fuente de orgullo para ustedes. Sus
-    conocimientos y habilidades son, como dijo Silvia, transmitido a través de generaciones como su
-    lengua Mam. Me destacé mucho esta relación entre sus palabras y sus acciones, como algo muy
-    bella en sus videos.
-  </StandaloneQuote>,
-  <FullscreenVideo videoId="04-Corn-Woman-Subtitle-03" hasSubtitles />,
-  <StandaloneQuote>
-    Por eso, no queríamos simplemente traducir todas sus palabras a inglés o español. Algo perdería
-    en la traducción. Ustedes han luchado contra siglos de colonización por mantener estas palabras,
-    y queríamos tratar sus palabras con respeto. Entonces decidimos solo traducir unas oraciones por
-    dar un poco de contexto, un poco de significado a la audiencia. Pensemos que la audiencia puede
-    entender mucho de sus videos, o incluso más, con la experiencia incomoda de no entender todas
-    las palabras y la necesidad resultante de dar atención a lo que si puede entender. Como
-    colonizadores, nos estamos acostumbrados a tener explicaciones por todo en nuestro idioma. Pero
-    yo creo que hay explicaciones que solo pueden ser entendido en su propia lengua en su propio
-    lugar. Y estos conocimientos vinculados a sus propias lenguas y sus propios lugares son
-    conocimientos, como nos muestran, que conlleve la sobrevivencia y florecimiento de humanidad y
-    la tierra. Esperamos que la audiencia pueda aprender un poco de estos temas profundos.
-  </StandaloneQuote>,
-];
+type Props = {
+  onComplete: () => void;
+};
 
-const Language: React.FC = () => {
-  const [measureIndex, incrementMeasure] = useWraparoundIndex(0, measures.length);
-  return (
-    <div className="language-container">
-      {measures[measureIndex]}
-      <button onClick={incrementMeasure} style={{ position: "fixed", top: 0, right: 0 }}>
-        Next measure (debug only)
-      </button>
-    </div>
-  );
+const Language: React.FC<Props> = ({ onComplete }: Props) => {
+  const measures = [
+    <>
+      <Title />
+      <PullToContinue onContinue={incrementMeasure} />
+    </>,
+    <>
+      <HiddenTextOne />
+      <PullToContinue onContinue={incrementMeasure} />
+    </>,
+    <>
+      <StandaloneQuote>
+        “Now that I have brought this, I want to take a break. After the break, I’ll chop the wood.
+        It’s raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for the
+        fire. Making fire is part of daily life and we know that making fire with wood is another
+        way to survive.”
+      </StandaloneQuote>
+      <PullToContinue onContinue={incrementMeasure} />
+    </>,
+    <>
+      <HiddenTextTwo />
+      <PullToContinue onContinue={incrementMeasure} />
+    </>,
+    <FullscreenVideo videoId="03-Weaving-Subtitle-03" hasSubtitles onComplete={incrementMeasure} />,
+    <>
+      <StandaloneQuote>
+        Encontremos un hermoso ritmo en como ustedes alternaban entre mostrar con acciones y
+        explicar con palabras. Aunque no podíamos entender (por ahora) todas sus palabras sin la
+        ayuda de Mintz and Silvia, entendíamos la importancia de estas tareas diarias – cortando
+        leña, cosechando maíz y frijol, preparando tortillas, y tejiendo ropa. Yo pude ver que estas
+        cosas no solo son una manera de sobrevivir en Xjan Xwan, pero también son una fuente de
+        orgullo para ustedes. Sus conocimientos y habilidades son, como dijo Silvia, transmitido a
+        través de generaciones como su lengua Mam. Me destacé mucho esta relación entre sus palabras
+        y sus acciones, como algo muy bella en sus videos.
+      </StandaloneQuote>
+      <PullToContinue onContinue={incrementMeasure} />
+    </>,
+    <FullscreenVideo
+      videoId="04-Corn-Woman-Subtitle-03"
+      hasSubtitles
+      onComplete={incrementMeasure}
+    />,
+    <>
+      <StandaloneQuote>
+        Por eso, no queríamos simplemente traducir todas sus palabras a inglés o español. Algo
+        perdería en la traducción. Ustedes han luchado contra siglos de colonización por mantener
+        estas palabras, y queríamos tratar sus palabras con respeto. Entonces decidimos solo
+        traducir unas oraciones por dar un poco de contexto, un poco de significado a la audiencia.
+        Pensemos que la audiencia puede entender mucho de sus videos, o incluso más, con la
+        experiencia incomoda de no entender todas las palabras y la necesidad resultante de dar
+        atención a lo que si puede entender. Como colonizadores, nos estamos acostumbrados a tener
+        explicaciones por todo en nuestro idioma. Pero yo creo que hay explicaciones que solo pueden
+        ser entendido en su propia lengua en su propio lugar. Y estos conocimientos vinculados a sus
+        propias lenguas y sus propios lugares son conocimientos, como nos muestran, que conlleve la
+        sobrevivencia y florecimiento de humanidad y la tierra. Esperamos que la audiencia pueda
+        aprender un poco de estos temas profundos.
+      </StandaloneQuote>
+      <PullToContinue onContinue={onComplete} />
+    </>,
+  ];
+  const [measureIndex, _incrementMeasure] = useWraparoundIndex(0, measures.length);
+
+  function incrementMeasure(): void {
+    _incrementMeasure();
+  }
+
+  return <div className="language-container">{measures[measureIndex]}</div>;
 };
 
 export default Language;

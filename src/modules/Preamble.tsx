@@ -1,12 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../AppContext";
 
 import "./Preamble.css";
 
-const Preamble: React.FC = () => {
+type Props = {
+  onComplete: () => void;
+};
+
+const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
   const [, dispatch] = useContext(AppContext);
   const [grantedLocation, setGrantedLocation] = useState(false);
   const [grantedCamera, setGrantedCamera] = useState(false);
+
+  useEffect(() => {
+    if (grantedCamera && grantedLocation) {
+      onComplete();
+    }
+  }, [grantedCamera, grantedLocation, onComplete]);
 
   function promptForGeolocation(): void {
     navigator.geolocation.getCurrentPosition(
@@ -33,9 +43,9 @@ const Preamble: React.FC = () => {
           watch, listen, read, and reflect.
         </p>
         <p>
-          <em>Weather Life</em> requires temporary access to your phone’s location data and camera
-          as part of the experience. Please give access to these features when prompted. This
-          information is not stored in any form.
+          <em>Firewood, Corn, Weaving</em> requires temporary access to your phone’s location data
+          and camera as part of the experience. Please give access to these features when prompted.
+          This information is not stored in any form.
         </p>
         <div
           className="preamble-instruction preamble-instruction-hidden"
@@ -47,9 +57,9 @@ const Preamble: React.FC = () => {
             ver, escuchar, leer, y reflejar.
           </p>
           <p>
-            <em>Weather Life</em> requiere acceso temporario a los datos de lugar y cámara de su
-            celular como parte de le experiencia. Por favor permita acceso a estas funciones cuando
-            pedido. Esta información no será almacenada en ningún forma.
+            <em>Firewood, Corn, Weaving</em> requiere acceso temporario a los datos de lugar y
+            cámara de su celular como parte de le experiencia. Por favor permita acceso a estas
+            funciones cuando pedido. Esta información no será almacenada en ningún forma.
           </p>
         </div>
         <div

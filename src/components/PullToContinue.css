@@ -1,0 +1,21 @@
+.pull-to-continue-container {
+  font-size: 12pt;
+  text-align: center;
+  opacity: 0.2;
+  transition: 0.1s ease all;
+  /* position: sticky;
+  bottom: 0; */
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+}
+
+.pull-background {
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.75);
+  background-color: #fdf6e3;
+  width: 100%;
+  height: 10px;
+  position: absolute;
+  top: 0;
+  transform: translateY(50px);
+}

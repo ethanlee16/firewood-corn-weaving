@@ -1,10 +1,5 @@
 .intro-container {
   padding: 20px;
   text-align: left;
-  max-height: 100vh;
-  overflow: scroll;
-}
-
-.intro-container > p:last-of-type {
   margin-bottom: 100px;
 }

@@ -1,5 +1,8 @@
 import React from "react";
+import PullToContinue from "../components/PullToContinue";
 import useWraparoundIndex from "../useWraparoundIndex";
+
+import "./Metrics.css";
 
 import MetricsSectionOne from "./Metrics/SectionOne";
 import MetricsSectionTwo from "./Metrics/SectionTwo";
@@ -18,11 +21,9 @@ const Metrics: React.FC = () => {
   const [measure, incrementMeasure] = useWraparoundIndex(0, measures.length);
 
   return (
-    <div>
+    <div className="metrics-container">
       {measures[measure]}
-      <button onClick={incrementMeasure} style={{ position: "fixed", top: 0, right: 0 }}>
-        Next measure (debug only)
-      </button>
+      <PullToContinue onContinue={incrementMeasure} />
     </div>
   );
 };

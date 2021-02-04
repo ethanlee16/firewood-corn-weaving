@@ -1,0 +1,10 @@
+.metrics-container {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.metrics-container .pull-to-continue-container {
+  align-self: flex-end;
+  width: 100%;
+}

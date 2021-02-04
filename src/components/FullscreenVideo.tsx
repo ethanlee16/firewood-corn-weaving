@@ -7,6 +7,7 @@ type Props = React.PropsWithChildren<{
   className?: string;
   hasSubtitles?: boolean;
   videoId: string;
+  onComplete?: () => void;
 }>;
 
 function buildCDNPath(videoId: string): string {
@@ -14,7 +15,7 @@ function buildCDNPath(videoId: string): string {
 }
 
 function buildCaptionPath(videoId: string): string {
-  return `https://d1d9il6x33qc20.cloudfront.net/${videoId}/subtitles.vtt`;
+  return `https://weather-bodies-assets.s3-us-west-1.amazonaws.com/${videoId}/subtitles_new.vtt`;
 }
 
 const FullscreenVideo: React.FC<Props> = ({
@@ -22,8 +23,11 @@ const FullscreenVideo: React.FC<Props> = ({
   className,
   hasSubtitles,
   videoId,
+  onComplete,
 }: Props) => {
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
+  const [videoNotPlaying, setVideoNotPlaying] = useState(false);
+
   const url = buildCDNPath(videoId);
   useEffect(() => {
     if (video) {
@@ -34,12 +38,26 @@ const FullscreenVideo: React.FC<Props> = ({
         hls.loadSource(url);
         hls.attachMedia(video);
       }
+      video.onended = () => {
+        onComplete?.();
+      };
     }
-  }, [video, url]);
+    const checkForPlayback = setInterval(() => {
+      if (video && video.paused && !video.ended) {
+        setVideoNotPlaying(true);
+      } else {
+        setVideoNotPlaying(false);
+      }
+    }, 3000);
+
+    return () => {
+      clearInterval(checkForPlayback);
+    };
+  }, [video, url, onComplete]);
 
   const videoEl = (
     <video
-      className={`video ${className}`}
+      className={`video ${className ?? ""}`}
       ref={setVideo}
       controls={false}
       autoPlay
@@ -54,15 +72,34 @@ const FullscreenVideo: React.FC<Props> = ({
     </video>
   );
 
-  return children ? (
+  return (
     <div className="video-container">
       {videoEl}
-      <div className="video-overlay">
-        <p>{children}</p>
-      </div>
+      {children && (
+        <div className="video-overlay">
+          <p>{children}</p>
+        </div>
+      )}
+      {videoNotPlaying && (
+        <button
+          className="force-playback"
+          onClick={() => {
+            video?.play();
+            setVideoNotPlaying(false);
+          }}
+        >
+          ▶️
+        </button>
+      )}
+      <button
+        style={{ position: "fixed", right: 0, top: 0, opacity: 0 }}
+        onClick={() => {
+          window.confirm("Are you sure you want to skip?") && onComplete?.();
+        }}
+      >
+        Skip
+      </button>
     </div>
-  ) : (
-    videoEl
   );
 };
 

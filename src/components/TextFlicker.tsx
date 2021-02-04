@@ -63,7 +63,7 @@ const TextFlicker: React.FC<Props> = ({ textSamples, sequence }: Props) => {
     };
   }, [sequence.length, timeWindow]);
 
-  return <>{textSamples[textSampleIndex]}</>;
+  return <>{randomizedTextSamples.current[textSampleIndex]}</>;
 };
 
 export default TextFlicker;

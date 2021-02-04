@@ -61,26 +61,7 @@ const measures = [
     conocimientos, como nos muestran, que conlleve la sobrevivencia y florecimiento de humanidad y
     la tierra. Esperamos que la audiencia pueda aprender un poco de estos temas profundos.{" "}
   </p>,
-  <FullscreenVideo videoId="07-Witz-POEM-03">
-    Like breath,
-    <br />
-    Clothes are
-    <br />
-    <br />
-    Intimate expressions
-    <br />
-    Of living in weather.
-    <br />
-    <br />
-    Too close to my skin
-    <br />
-    To be temperature
-    <br />
-    <br />
-    Weather is breath
-    <br />
-    Clothed in the wind
-  </FullscreenVideo>,
+  <FullscreenVideo videoId="07-Witz-POEM-03" hasSubtitles />,
   <>
     <p>
       Notemos en el video en la montaña el sonido de viento junto con los sonidos de su respiración,

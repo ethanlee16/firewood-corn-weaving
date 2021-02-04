@@ -10,47 +10,56 @@ import Intro from "./modules/Intro";
 import Language from "./modules/Language";
 import Breath from "./modules/Breath";
 import AppContextProvider from "./AppContext";
+import PullToContinue from "./components/PullToContinue";
 
 const Title = () => (
-  <div className="hero">
-    <h1>Firewood, Corn, Weaving</h1>
-  </div>
+  <>
+    <div className="hero">
+      <h1>Firewood, Corn, Weaving</h1>
+    </div>
+  </>
 );
-
-const modules = [
-  <Title />,
-  <Preamble />,
-  <FullscreenVideo videoId="01-Witz" />,
-  <Intro />,
-  <FullscreenVideo videoId="02-Firewood-01" />,
-  <Language />,
-  <FullscreenVideo videoId="05-Corn-01" />,
-  <Metrics />,
-  <FullscreenVideo videoId="weaving" />,
-  <Breath />,
-];
 
 function App() {
   const [moduleIndex, setModuleIndex] = useState(0);
+  const [preambleComplete, setPreambleComplete] = useState(false);
+
+  function advanceModule(): void {
+    setModuleIndex((prevIndex: number) => {
+      if (prevIndex === modules.length - 1) {
+        return 0;
+      }
+      return prevIndex + 1;
+    });
+  }
+
+  const modules = [
+    // <>
+    //   <Title />
+    //   <PullToContinue onContinue={advanceModule} />
+    // </>,
+    // <>
+    //   <Preamble onComplete={() => setPreambleComplete(true)} />
+    //   {preambleComplete && <PullToContinue onContinue={advanceModule} />}
+    // </>,
+    // <FullscreenVideo videoId="01-Witz" onComplete={advanceModule} />,
+    // <>
+    //   <Intro />
+    //   <PullToContinue onContinue={advanceModule} />
+    // </>,
+    // <FullscreenVideo videoId="02-Firewood-01" onComplete={advanceModule} />,
+    // <Language onComplete={advanceModule} />,
+    // <FullscreenVideo videoId="05-Corn-01" onComplete={advanceModule} />,
+    <Metrics />,
+    <FullscreenVideo videoId="06-Weaving-full" />,
+    <Breath />,
+  ];
 
   return (
     <AppContextProvider>
-      <div className="App">
+      <div className="App" id="scrollable">
         {modules[moduleIndex]}
         <BrowserWarning />
-        <button
-          className="next-btn"
-          onClick={() => {
-            setModuleIndex((prevIndex: number) => {
-              if (prevIndex === modules.length - 1) {
-                return 0;
-              }
-              return prevIndex + 1;
-            });
-          }}
-        >
-          Next
-        </button>
       </div>
     </AppContextProvider>
   );

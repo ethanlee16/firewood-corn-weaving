@@ -1,11 +1,7 @@
 .App {
   font-family: Lora, serif;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .App-header {
@@ -25,13 +21,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
   padding: 20px;
-}
-
-.hero {
   font-size: 20pt;
+  height: calc(100% - 50px);
+  box-sizing: border-box;
 }
 
 .next-btn {
