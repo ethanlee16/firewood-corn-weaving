@@ -294,12 +294,7 @@ const measures = [
     lengua Mam. Me destacé mucho esta relación entre sus palabras y sus acciones, como algo muy
     bella en sus videos.
   </StandaloneQuote>,
-  <FullscreenVideo videoId="firewood">
-    "It’s almost dark and I need to make my tortillas. It’s cold and I need to go to sleep, and it’s
-    raining a lot. I mostly use my hands to make tortillas. Sometimes the wood is not dry enough, so
-    it’s hard to make the fire because the wood is always wet during the rainy season. I got the
-    wood from the forest up in the hills."
-  </FullscreenVideo>,
+  <FullscreenVideo videoId="04-Corn-Woman-Subtitle-03" hasSubtitles />,
   <StandaloneQuote>
     Por eso, no queríamos simplemente traducir todas sus palabras a inglés o español. Algo perdería
     en la traducción. Ustedes han luchado contra siglos de colonización por mantener estas palabras,
@@ -311,7 +306,7 @@ const measures = [
     yo creo que hay explicaciones que solo pueden ser entendido en su propia lengua en su propio
     lugar. Y estos conocimientos vinculados a sus propias lenguas y sus propios lugares son
     conocimientos, como nos muestran, que conlleve la sobrevivencia y florecimiento de humanidad y
-    la tierra. Esperamos que la audiencia pueda aprender un poco de estos temas profundos.{" "}
+    la tierra. Esperamos que la audiencia pueda aprender un poco de estos temas profundos.
   </StandaloneQuote>,
 ];
 

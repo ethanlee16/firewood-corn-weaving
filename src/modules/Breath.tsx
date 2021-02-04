@@ -28,7 +28,10 @@ const VideoCallMeasure = ({ showCamera }: { showCamera?: boolean }) => {
 
   return (
     <div className="video-call">
-      <FullscreenVideo videoId="weaving" {...(showCamera ? { className: "video-shrunk" } : {})} />
+      <FullscreenVideo
+        videoId="08-Weaving-Webcam-01"
+        {...(showCamera ? { className: "video-shrunk" } : {})}
+      />
       <video
         className="camera-view"
         ref={cameraVideo}
@@ -50,10 +53,7 @@ const VideoCallMeasure = ({ showCamera }: { showCamera?: boolean }) => {
 
 const measures = [
   <Title />,
-  <FullscreenVideo videoId="corn">
-    Javier: It has stopped raining because it was raining a lot. Thank God we got a lot of rain. So,
-    this is my cornfield, this is my work and I’m very happy about it. Today, I’ll be picking corn.
-  </FullscreenVideo>,
+  <FullscreenVideo videoId="07-Corn-Male-Subtitle-03" hasSubtitles />,
   <p>
     Como colonizadores, nos estamos acostumbrados a tener explicaciones por todo en nuestro idioma.
     Pero yo creo que hay explicaciones que solo pueden ser entendido en su propia lengua en su
@@ -61,7 +61,7 @@ const measures = [
     conocimientos, como nos muestran, que conlleve la sobrevivencia y florecimiento de humanidad y
     la tierra. Esperamos que la audiencia pueda aprender un poco de estos temas profundos.{" "}
   </p>,
-  <FullscreenVideo videoId="witz">
+  <FullscreenVideo videoId="07-Witz-POEM-03">
     Like breath,
     <br />
     Clothes are
