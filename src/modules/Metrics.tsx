@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
+import useWraparoundIndex from "../useWraparoundIndex";
 
 import MetricsSectionOne from "./Metrics/SectionOne";
 import MetricsSectionTwo from "./Metrics/SectionTwo";
 
-const sections = [<MetricsSectionOne />, <MetricsSectionTwo />];
+const Title = () => {
+  return (
+    <div className="hero">
+      <h1>Metrics / Aija’b’l / Métrica</h1>
+    </div>
+  );
+};
+
+const measures = [<Title />, <MetricsSectionOne />, <MetricsSectionTwo />];
 
 const Metrics: React.FC = () => {
-  const [section, setSection] = useState(0);
+  const [measure, incrementMeasure] = useWraparoundIndex(0, measures.length);
 
   return (
     <div>
-      {sections[section]}
-      <button
-        onClick={() => {
-          if (section !== sections.length - 1) {
-            setSection(section + 1);
-          }
-        }}
-      >
-        Next
+      {measures[measure]}
+      <button onClick={incrementMeasure} style={{ position: "fixed", top: 0, right: 0 }}>
+        Next measure (debug only)
       </button>
     </div>
   );

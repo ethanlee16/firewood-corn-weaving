@@ -1,0 +1,42 @@
+.preamble-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  height: -webkit-fill-available;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.preamble-container button {
+  font-family: Lora;
+  font-size: 14pt;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  z-index: 2;
+  background-color: #dbded9;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.preamble-container button:disabled {
+  background-color: #93a1a1;
+  color: rgba(255, 255, 255, 0.5);
+  border: none;
+}
+
+.preamble-instruction {
+  border: 1px solid black;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  z-index: 1;
+  position: relative;
+}
+
+.preamble-instruction-hidden {
+  opacity: 0.1;
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+}

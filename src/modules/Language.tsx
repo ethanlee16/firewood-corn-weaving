@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import FullscreenVideo from "../components/FullscreenVideo";
 import shuffle from "../shuffle";
 import useWraparoundIndex from "../useWraparoundIndex";
@@ -6,7 +6,7 @@ import "./Language.css";
 
 const Title = () => {
   return (
-    <div className="language-hero">
+    <div className="hero">
       <h1>Language / Yol / Idioma</h1>
     </div>
   );
@@ -14,6 +14,7 @@ const Title = () => {
 
 /**
  * TODO: Make main text section consistent scroll
+ * TODO: Make hidden text different visual style
  */
 const HiddenTextOne = () => {
   const [textState, setTextState] = useState<"hidden" | "main">("hidden");
@@ -65,11 +66,11 @@ const HiddenTextOne = () => {
       {textState === "hidden" ? (
         <>
           <p>
-            <b>Si’ Osbaldo</b>: My friends! Today I’ll show the work that men do here in San Juan
-            Atitan. Today, I’ll show you how to get firewood (lena). First, I take rope, my bag, and
-            a machete. Today I’m going to a place called “Tzaq txa’m”. It belongs to the town. I’m
+            <b>Osbaldo</b>: My friends! Today I’ll show the work that men do here in San Juan
+            Atitan. Today, I’ll show you how to get firewood. First, I take rope, my bag, and a
+            machete. Today I’m going to a place called “Tzaq txa’m”. It belongs to the town. I’m
             taking my machete and ax. The ax is to cut down the big trees. I’m going now and I’ll
-            come back later on.
+            come back later on. 
           </p>
           <p>
             Hello, I’m back. I went to pick up the firewoods at the town’s forest. I went to Tzaq
@@ -78,13 +79,12 @@ const HiddenTextOne = () => {
             what I have here. For those who have horses, they can bring more using the horses. Now
             that I have brought this, I want to take a break. After the break, I’ll chop the wood.
             It’s raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for
-            the fire. It’s going to be used to cook tortillas, make Chuj (like sauna to take
-            shower). 
+            the fire. It’s going to be used to cook tortillas, make <em>chuj</em>.
           </p>
           <p>
             Now I’m going to chop it after my break. I’ll take the ropes first. I need to pull out
             my ax from it. It’s part of the tradition men must carry their axes together with the
-            wood while carrying. This video is about showing you about the firwoods. I’m going to
+            wood while carrying. This video is about showing you about the firewood. I’m going to
             wrap my rope, so it’s ready for the next trip. 
           </p>
           <p>
@@ -95,8 +95,8 @@ const HiddenTextOne = () => {
             the wood, I stack them together. Sometimes they are not dry, so I stack them and hope
             they dry out. Making fire is part of daily life and we know that making fire with wood
             is another way to survive. We don’t use a stove, but only wood. As I mentioned before,
-            this wood is used to make tortillas to set fire inside the Chuj. No gas is used in any
-            of these. So this is the work we as men do here. 
+            this wood is used to make tortillas to set fire inside the <em>chuj</em>. No gas is used
+            in any of these. So this is the work we as men do here. 
           </p>
           <p>
             Today, you’ve seen that I went and brought wood. I chopped them and I’m going to pile
@@ -105,34 +105,34 @@ const HiddenTextOne = () => {
             make tortillas or cook corn or Chuj. Here, you want to wonder what type of tree is this
             one. Well, this one is q’antze. There are oak trees which are the best. Also, there is
             pine as well, these are the types of trees here. Above all, this is the work that men do
-            here in Xjan Xwan (San Juan Atitan) Thank you for watching.
+            here in Xjan Xwan. Thank you for watching.
           </p>
           <p>
-            <b>Nb’anchani wab’j</b>: Hello my friends, I’d like to show you how we make tortillas in
-            San Juan Atitan Guatemala. First, I need to make fire and I use ocote (Montezuma pine).
+            <b>Ana</b>: Hello my friends, I’d like to show you how we make tortillas in San Juan
+            Atitan Guatemala. First, I need to make fire and I use <em>ocote</em> (Montezuma pine).
             It’s getting dark and I want to make some fire. My friends are coming and I need to make
             tortillas. Come inside my kitchen. Let’s make fire. I’ll make fire under my comal. This
             is how we make fire here. I need more wood.  I went yesterday to pick up the wood in the
             forest. Before I make tortillas, I must make fire. Let’s clean the comal and put away
             the lighter. Today, I’ll be making tortillas and this is hydrated lime. We use hydrated
             lime everytime to make tortillas or otherwise the comal won’t work. This is my cooking
-            pot with my corn (b’utx). This is my sink right here.{" "}
+            pot with my corn . This is my sink right here.
           </p>
         </>
       ) : (
         <>
           <p>Correo a la gente de Xjan Xwan</p>
           <p>
-            Silvia, Hermenegildo, Silverio, Ana, Javier, Elizandro, Mario, y todos los estimados
+            Silvia, Osbaldo, Hermenegildo, Ana, Javier, Elizandro, Mario, y todos los estimados
             señores y señoras de Xjan Xwan,
           </p>
           <p>
-            Jun q’olb’elb’il te kyiy! Wiy nb’i Christian. Ti tb’i wuk’li Brandon. Naj qini max
-            Boston, Massachusetts, tuj t-tanm meẍ. Xna’tzal qini tuj Yale. Waji tu’n tel nni’yi ti’j
-            qa tnam, xjal, tx’otx’, b’ix yol tuj Xjan Xwan. Naj Brandon max Alemania. Echl Brandon.
-            Chjonte kyiy [por compartir] tyol b’ix tchwinqlal. Por ahora, voy a escribirles en
-            español, como un idioma compartiendo entre nosotros dos, anqué en el futuro espero que
-            podemos conversar en su propio idioma Mam.
+            Jun q’olb’elb’il te kyiy! Wiy nb’i Christian. Tb’i wuk’li no’k tb’i te Brandon. Naj qini
+            max Boston, Massachusetts, tuj t-tanm meẍ. Xna’tzal qini tuj Yale. Nchin xnaq’tzani ti’j
+            qyol. Waji tu’n tel nni’yi ti’j qa tnam, xjal, tx’otx’, b’ix yol tuj Xjan Xwan. Naj
+            Brandon max Alemania. Echl Brandon. Chjonte kyiy tu’n ma tzaj t-txolb’ani tyol b’ix
+            tchwinqlali. Por ahora, voy a escribirles en español, como un idioma compartiendo entre
+            nosotros dos, anqué en el futuro espero que podemos conversar en su propio idioma Mam.
           </p>
           <p>
             Personalmente, como estudiante e investigador tengo interés en como los seres humanos se
@@ -155,25 +155,28 @@ const HiddenTextOne = () => {
   );
 };
 
+/**
+ * TODO: Subtitle format, or centered.
+ */
 const StandaloneQuote = ({ children }: React.PropsWithChildren<{}>) => {
   return <p>{children}</p>;
 };
 
 const probabilisticRanges = [
   {
-    probability: 0.2,
+    probability: 0.35,
     min: 10,
     max: 100,
   },
   {
-    probability: 0.3,
-    min: 2000,
-    max: 3000,
+    probability: 0.45,
+    min: 700,
+    max: 1200,
   },
   {
-    probability: 0.5,
-    min: 3000,
-    max: 5000,
+    probability: 0.2,
+    min: 2000,
+    max: 3000,
   },
 ];
 
@@ -280,20 +283,16 @@ const measures = [
     survive.”
   </StandaloneQuote>,
   <HiddenTextTwo />,
-  <FullscreenVideo videoId="weaving">
-    "Women do a lot of things at home. Many women make a living while weaving. They weave every day
-    and make other beautiful textiles. Every day they come up with new ideas, it’s one way to
-    survive in San Juan Atitán."
-  </FullscreenVideo>,
+  <FullscreenVideo videoId="03-Weaving-Subtitle-03" hasSubtitles />,
   <StandaloneQuote>
     Encontremos un hermoso ritmo en como ustedes alternaban entre mostrar con acciones y explicar
-    con palabras. Aunque no podíamos entender (por ahora) todas sus palabras sin la ayuda de Mintz,
-    entendíamos la importancia de estas tareas diarias – cortando leña, cosechando maíz y frijol,
-    preparando tortillas, y tejiendo ropa. Yo pude ver que estas cosas no solo son una manera de
-    sobrevivir en Xjan Xwan, pero también son una fuente de orgullo para ustedes. Sus conocimientos
-    y habilidades son, como dijo Silvia, transmitido a través de generaciones como su lengua Mam. Me
-    destacé mucho esta relación entre sus palabras y sus acciones, como algo muy bella en sus
-    videos.
+    con palabras. Aunque no podíamos entender (por ahora) todas sus palabras sin la ayuda de Mintz
+    and Silvia, entendíamos la importancia de estas tareas diarias – cortando leña, cosechando maíz
+    y frijol, preparando tortillas, y tejiendo ropa. Yo pude ver que estas cosas no solo son una
+    manera de sobrevivir en Xjan Xwan, pero también son una fuente de orgullo para ustedes. Sus
+    conocimientos y habilidades son, como dijo Silvia, transmitido a través de generaciones como su
+    lengua Mam. Me destacé mucho esta relación entre sus palabras y sus acciones, como algo muy
+    bella en sus videos.
   </StandaloneQuote>,
   <FullscreenVideo videoId="firewood">
     "It’s almost dark and I need to make my tortillas. It’s cold and I need to go to sleep, and it’s

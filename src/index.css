@@ -8,6 +8,7 @@ body {
   height: 100%;
   overflow: hidden;
   position: relative;
+  background-color: #fdf6e3;
 }
 
 html {

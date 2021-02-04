@@ -21,6 +21,19 @@
   color: #61dafb;
 }
 
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  padding: 20px;
+}
+
+.hero {
+  font-size: 20pt;
+}
+
 .next-btn {
   position: fixed;
   width: 100%;
