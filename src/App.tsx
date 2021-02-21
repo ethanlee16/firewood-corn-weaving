@@ -11,6 +11,7 @@ import Language from "./modules/Language";
 import Breath from "./modules/Breath";
 import AppContextProvider from "./AppContext";
 import PullToContinue from "./components/PullToContinue";
+import Outro from "./modules/Outro";
 
 const Title = () => (
   <>
@@ -34,25 +35,26 @@ function App() {
   }
 
   const modules = [
-    // <>
-    //   <Title />
-    //   <PullToContinue onContinue={advanceModule} />
-    // </>,
-    // <>
-    //   <Preamble onComplete={() => setPreambleComplete(true)} />
-    //   {preambleComplete && <PullToContinue onContinue={advanceModule} />}
-    // </>,
-    // <FullscreenVideo videoId="01-Witz" onComplete={advanceModule} />,
-    // <>
-    //   <Intro />
-    //   <PullToContinue onContinue={advanceModule} />
-    // </>,
-    // <FullscreenVideo videoId="02-Firewood-01" onComplete={advanceModule} />,
-    // <Language onComplete={advanceModule} />,
-    // <FullscreenVideo videoId="05-Corn-01" onComplete={advanceModule} />,
-    <Metrics />,
-    <FullscreenVideo videoId="06-Weaving-full" />,
-    <Breath />,
+    <>
+      <Title />
+      <PullToContinue onContinue={advanceModule} />
+    </>,
+    <>
+      <Preamble onComplete={() => setPreambleComplete(true)} />
+      {preambleComplete && <PullToContinue onContinue={advanceModule} videoNext />}
+    </>,
+    <FullscreenVideo videoId="01-Witz" onComplete={advanceModule} />,
+    <>
+      <Intro />
+      <PullToContinue onContinue={advanceModule} videoNext />
+    </>,
+    <FullscreenVideo videoId="02-Firewood-01" onComplete={advanceModule} />,
+    <Language onComplete={advanceModule} />,
+    <FullscreenVideo videoId="05-Corn-01" onComplete={advanceModule} />,
+    <Metrics onComplete={advanceModule} />,
+    <FullscreenVideo videoId="06-Weaving-full" onComplete={advanceModule} />,
+    <Breath onComplete={advanceModule} />,
+    <Outro />,
   ];
 
   return (

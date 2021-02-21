@@ -168,7 +168,7 @@ const HiddenTextOne = () => {
 /**
  * TODO: Subtitle format, or centered.
  */
-const StandaloneQuote = ({ children }: React.PropsWithChildren<{}>) => {
+export const StandaloneQuote = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <div className="language-quote-container">
       <p className="language-quote">{children}</p>
@@ -303,20 +303,20 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
     </>,
     <>
       <HiddenTextOne />
-      <PullToContinue onContinue={incrementMeasure} />
+      <PullToContinue onContinue={incrementMeasure} videoNext />
     </>,
     <>
       <StandaloneQuote>
-        “Now that I have brought this, I want to take a break. After the break, I’ll chop the wood.
+        Now that I have brought this, I want to take a break. After the break, I’ll chop the wood.
         It’s raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for the
         fire. Making fire is part of daily life and we know that making fire with wood is another
-        way to survive.”
+        way to survive.
       </StandaloneQuote>
       <PullToContinue onContinue={incrementMeasure} />
     </>,
     <>
       <HiddenTextTwo />
-      <PullToContinue onContinue={incrementMeasure} />
+      <PullToContinue onContinue={incrementMeasure} videoNext />
     </>,
     <FullscreenVideo videoId="03-Weaving-Subtitle-03" hasSubtitles onComplete={incrementMeasure} />,
     <>
@@ -330,7 +330,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
         través de generaciones como su lengua Mam. Me destacé mucho esta relación entre sus palabras
         y sus acciones, como algo muy bella en sus videos.
       </StandaloneQuote>
-      <PullToContinue onContinue={incrementMeasure} />
+      <PullToContinue onContinue={incrementMeasure} videoNext />
     </>,
     <FullscreenVideo
       videoId="04-Corn-Woman-Subtitle-03"
@@ -352,7 +352,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
         sobrevivencia y florecimiento de humanidad y la tierra. Esperamos que la audiencia pueda
         aprender un poco de estos temas profundos.
       </StandaloneQuote>
-      <PullToContinue onContinue={onComplete} />
+      <PullToContinue onContinue={onComplete} videoNext />
     </>,
   ];
   const [measureIndex, _incrementMeasure] = useWraparoundIndex(0, measures.length);

@@ -21,14 +21,15 @@ const RevealByTyping: React.FC<Props> = ({ content }: Props) => {
       } else if (inDynamicSegment.current) {
         setIndex(bounded((prevIndex: number) => prevIndex + 1));
         setFragment((prevFrag: React.ReactNode[]) => {
+          const lastFrag = prevFrag[prevFrag.length - 1];
+          if (typeof lastFrag === "string") {
+            prevFrag[prevFrag.length - 1] = [lastFrag];
+          }
           // @ts-ignore
-          // Object.defineProperty(prevFrag[prevFrag.length - 1], "isDymamic", {
-          //   value: true,
-          //   writable: true,
-          // });
+          prevFrag[prevFrag.length - 1].isDynamic = true;
           // @ts-ignore
-          // prevFrag[prevFrag.length - 1].isTyping = true;
-          // prevFrag[prevFrag.length - 1] = [prevFrag[prevFrag.length - 1], nextChar];
+          prevFrag[prevFrag.length - 1].isTyping = true;
+          prevFrag[prevFrag.length - 1] = [prevFrag[prevFrag.length - 1], nextChar];
           return [...prevFrag.slice(0, prevFrag.length - 1), prevFrag[prevFrag.length - 1]];
         });
       } else if (nextChar === "@") {

@@ -8,6 +8,7 @@ type Props = React.PropsWithChildren<{
   hasSubtitles?: boolean;
   videoId: string;
   onComplete?: () => void;
+  onPlay?: () => void;
 }>;
 
 function buildCDNPath(videoId: string): string {
@@ -24,6 +25,7 @@ const FullscreenVideo: React.FC<Props> = ({
   hasSubtitles,
   videoId,
   onComplete,
+  onPlay,
 }: Props) => {
   const [video, setVideo] = useState<HTMLVideoElement | null>(null);
   const [videoNotPlaying, setVideoNotPlaying] = useState(false);
@@ -38,9 +40,6 @@ const FullscreenVideo: React.FC<Props> = ({
         hls.loadSource(url);
         hls.attachMedia(video);
       }
-      video.onended = () => {
-        onComplete?.();
-      };
     }
     const checkForPlayback = setInterval(() => {
       if (video && video.paused && !video.ended) {
@@ -53,7 +52,16 @@ const FullscreenVideo: React.FC<Props> = ({
     return () => {
       clearInterval(checkForPlayback);
     };
-  }, [video, url, onComplete]);
+  }, [video, url]);
+
+  useEffect(() => {
+    if (video && onComplete) {
+      video.addEventListener("ended", onComplete);
+      return () => {
+        video.removeEventListener("ended", onComplete);
+      };
+    }
+  }, [video, onComplete]);
 
   const videoEl = (
     <video
@@ -63,6 +71,7 @@ const FullscreenVideo: React.FC<Props> = ({
       autoPlay
       playsInline
       crossOrigin="anonymous"
+      onPlay={onPlay}
     >
       {hasSubtitles ? (
         <track default kind="captions" srcLang="en" src={buildCaptionPath(videoId)} />

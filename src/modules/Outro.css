@@ -1,0 +1,59 @@
+.outro-container {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.credits-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin: 10px;
+  padding: 20px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.credits-container .roll {
+  transform: translateY(50%);
+  animation: creditRoll 30s linear forwards;
+  animation-fill-mode: forwards;
+}
+
+.fundraise-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  margin: 10px;
+  margin-top: 0;
+  padding: 5px 20px;
+  padding-bottom: 40px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.donate {
+  display: block;
+  font-family: Lora;
+  font-size: 12pt;
+  margin: 20px 0;
+  z-index: 2;
+  background-color: #dbded9;
+  border: 1px solid black;
+  border-radius: 3px;
+  text-decoration: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+@keyframes creditRoll {
+  0% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-82%);
+  }
+}
+
+.credits-container b {
+  display: block;
+}

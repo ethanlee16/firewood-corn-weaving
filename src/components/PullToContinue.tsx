@@ -3,11 +3,12 @@ import "./PullToContinue.css";
 
 type Props = {
   onContinue: () => void;
+  videoNext?: boolean;
 };
 
 const THRESHOLD = 100;
 
-const PullToContinue: React.FC<Props> = ({ onContinue }: Props) => {
+const PullToContinue: React.FC<Props> = ({ onContinue, videoNext }: Props) => {
   const container = useRef<HTMLDivElement>(null);
   const background = useRef<HTMLDivElement>(null);
   const [thresholdReached, setThresholdReached] = useState(false);
@@ -46,6 +47,9 @@ const PullToContinue: React.FC<Props> = ({ onContinue }: Props) => {
 
   const pullEnd = useCallback(
     function pullEnd(event: TouchEvent) {
+      if (videoNext) {
+        return;
+      }
       if (thresholdReached) {
         onContinue();
       } else {
@@ -58,7 +62,7 @@ const PullToContinue: React.FC<Props> = ({ onContinue }: Props) => {
         setTouchStartY(0);
       }, 0);
     },
-    [onContinue, thresholdReached]
+    [onContinue, videoNext, thresholdReached]
   );
 
   useEffect(() => {
@@ -73,7 +77,11 @@ const PullToContinue: React.FC<Props> = ({ onContinue }: Props) => {
     };
   }, [pullStart, pull, pullEnd]);
 
-  return (
+  return videoNext ? (
+    <button className="press-to-continue" onClick={onContinue}>
+      Continue
+    </button>
+  ) : (
     <div className="pull-to-continue-container" ref={container}>
       {thresholdReached ? "Release to continue" : "Scroll to continue"}
       <div className="pull-background" ref={background}></div>

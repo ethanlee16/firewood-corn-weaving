@@ -1,11 +1,14 @@
 .breath-container {
-  height: 100%;
-  overflow: scroll;
+  height: calc(100% - 100px);
+  min-height: 100%;
   padding: 20px;
 }
 
 .accent {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #eee8d5;
+  font-family: monospace;
+  font-size: 12pt;
+  padding: 10px;
 }
 
 .video-shrunk {
@@ -26,7 +29,7 @@
 }
 
 .video-call {
-  height: 75%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -41,8 +44,10 @@
   padding: 10px;
   font-size: 14pt;
   transform: translateY(120%);
+  opacity: 0;
 }
 
 .video-call-overlay-show {
   transform: translateY(0);
+  opacity: 1;
 }
