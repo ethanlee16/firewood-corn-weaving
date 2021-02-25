@@ -4,11 +4,16 @@ import "./PullToContinue.css";
 type Props = {
   onContinue: () => void;
   videoNext?: boolean;
+  verbText?: string;
 };
 
 const THRESHOLD = 100;
 
-const PullToContinue: React.FC<Props> = ({ onContinue, videoNext }: Props) => {
+const PullToContinue: React.FC<Props> = ({
+  onContinue,
+  videoNext,
+  verbText = "Continue",
+}: Props) => {
   const container = useRef<HTMLDivElement>(null);
   const background = useRef<HTMLDivElement>(null);
   const [thresholdReached, setThresholdReached] = useState(false);
@@ -79,11 +84,13 @@ const PullToContinue: React.FC<Props> = ({ onContinue, videoNext }: Props) => {
 
   return videoNext ? (
     <button className="press-to-continue" onClick={onContinue}>
-      Continue
+      {verbText}
     </button>
   ) : (
     <div className="pull-to-continue-container" ref={container}>
-      {thresholdReached ? "Release to continue" : "Scroll to continue"}
+      {thresholdReached
+        ? `Release to ${verbText.toLowerCase()}`
+        : `Scroll to ${verbText.toLowerCase()}`}
       <div className="pull-background" ref={background}></div>
     </div>
   );

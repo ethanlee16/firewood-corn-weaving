@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import { GeolocationPosition } from "@capacitor/core";
 import { mockCurrentWeather } from "./mockWeather";
 
 export type Action =
@@ -13,11 +14,15 @@ export type Action =
   | {
       type: "SET_WEATHER_INFO";
       info: Required<AppContextStore>["weatherInfo"];
+    }
+  | {
+      type: "GRANTED_CAMERA_STREAM";
     };
 
 type AppContextStore = {
   cameraStream?: MediaStream;
-  location?: GeolocationPosition;
+  grantedCameraFromCapacitor?: boolean;
+  location: GeolocationPosition;
   weatherInfo?: {
     temperature: number;
     description: string;
@@ -34,7 +39,17 @@ type AppContextStore = {
   };
 };
 
-const initialState: AppContextStore = {};
+const initialState: AppContextStore = {
+  location: {
+    coords: {
+      // Default: Boston
+      accuracy: 50,
+      latitude: 42.372557,
+      longitude: -71.1223617,
+    },
+    timestamp: Date.now(),
+  },
+};
 const reducer = (state: AppContextStore, action: Action): AppContextStore => {
   switch (action.type) {
     case "SET_CAMERA_STREAM":
@@ -51,6 +66,11 @@ const reducer = (state: AppContextStore, action: Action): AppContextStore => {
       return {
         ...state,
         weatherInfo: action.info,
+      };
+    case "GRANTED_CAMERA_STREAM":
+      return {
+        ...state,
+        grantedCameraFromCapacitor: true,
       };
   }
 };

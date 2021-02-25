@@ -23,7 +23,7 @@ const Title = () => (
 
 function App() {
   const [moduleIndex, setModuleIndex] = useState(0);
-  const [preambleComplete, setPreambleComplete] = useState(false);
+  const [preambleStatus, setPreambleStatus] = useState<string | undefined>();
 
   function advanceModule(): void {
     setModuleIndex((prevIndex: number) => {
@@ -40,8 +40,14 @@ function App() {
       <PullToContinue onContinue={advanceModule} />
     </>,
     <>
-      <Preamble onComplete={() => setPreambleComplete(true)} />
-      {preambleComplete && <PullToContinue onContinue={advanceModule} videoNext />}
+      <Preamble onComplete={(status) => setPreambleStatus(status)} />
+      {preambleStatus && (
+        <PullToContinue
+          onContinue={advanceModule}
+          videoNext
+          verbText={preambleStatus === "skippable" ? "Skip" : "Continue"}
+        />
+      )}
     </>,
     <FullscreenVideo videoId="01-Witz" onComplete={advanceModule} />,
     <>

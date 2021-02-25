@@ -1,37 +1,71 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Capacitor, GeolocationPosition, Plugins } from "@capacitor/core";
 import { AppContext } from "../AppContext";
 
 import "./Preamble.css";
 
 type Props = {
-  onComplete: () => void;
+  onComplete: (status: "complete" | "skippable") => void;
 };
 
 const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
   const [, dispatch] = useContext(AppContext);
   const [grantedLocation, setGrantedLocation] = useState(false);
   const [grantedCamera, setGrantedCamera] = useState(false);
+  const [locationError, setLocationError] = useState<string | undefined>();
+  const [cameraError, setCameraError] = useState<string | undefined>();
 
   useEffect(() => {
     if (grantedCamera && grantedLocation) {
-      onComplete();
+      onComplete("complete");
+    } else if (locationError || cameraError) {
+      onComplete("skippable");
     }
-  }, [grantedCamera, grantedLocation, onComplete]);
+  }, [grantedCamera, grantedLocation, cameraError, locationError, onComplete]);
 
-  function promptForGeolocation(): void {
-    navigator.geolocation.getCurrentPosition(
-      (position: GeolocationPosition) => {
+  async function promptForGeolocation(): Promise<void> {
+    try {
+      let position: GeolocationPosition | undefined;
+      if (Capacitor.isPluginAvailable("Geolocation")) {
+        position = await Plugins.Geolocation.getCurrentPosition();
+      } else if ("geolocation" in navigator) {
+        position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(
+            (position: globalThis.GeolocationPosition) => {
+              resolve(position as GeolocationPosition);
+            },
+            (error: GeolocationPositionError) => reject(error)
+          );
+        });
+      }
+      if (position) {
         setGrantedLocation(true);
         dispatch({ type: "SET_GEOLOCATION_POSITION", location: position });
-      },
-      (error: GeolocationPositionError) => {}
-    );
+      } else {
+        throw new Error("Could not find a way to get your location on this device.");
+      }
+    } catch (err) {
+      setLocationError(err.message);
+    }
   }
 
   async function promptForCamera(): Promise<void> {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    dispatch({ type: "SET_CAMERA_STREAM", stream });
-    setGrantedCamera(true);
+    let stream: MediaStream | undefined;
+    try {
+      if (Capacitor.isPluginAvailable("Camera") && Plugins.Camera.requestPermissions) {
+        await Plugins.Camera.requestPermissions();
+        dispatch({ type: "GRANTED_CAMERA_STREAM" });
+        setGrantedCamera(true);
+      } else if (typeof navigator !== "undefined") {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        dispatch({ type: "SET_CAMERA_STREAM", stream });
+        setGrantedCamera(true);
+      } else {
+        throw new Error("Could not find a way to access the camera on this device.");
+      }
+    } catch (err) {
+      setCameraError(err.message);
+    }
   }
 
   return (
@@ -80,9 +114,11 @@ const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
       <button onClick={promptForGeolocation} disabled={grantedLocation}>
         {grantedLocation ? "Allowed access to location" : "Allow access to location"}
       </button>
+      {locationError && <p className="permissions-error">{locationError}</p>}
       <button onClick={promptForCamera} disabled={grantedCamera}>
         {grantedCamera ? "Allowed access to camera" : "Allow access to camera"}
       </button>
+      {cameraError && <p className="permissions-error">{cameraError}</p>}
     </div>
   );
 };

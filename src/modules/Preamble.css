@@ -39,3 +39,8 @@
   z-index: 0;
   width: 100%;
 }
+
+.permissions-error {
+  color: red;
+  text-align: center;
+}
