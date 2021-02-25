@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Firewood, Corn, Weaving</string>
+    <string name="title_activity_main">Firewood, Corn, Weaving</string>
+    <string name="package_name">ee.ethanl.weaving</string>
+    <string name="custom_url_scheme">ee.ethanl.weaving</string>
+</resources>
