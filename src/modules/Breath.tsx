@@ -105,10 +105,13 @@ const Breath: React.FC<Props> = ({ onComplete }: Props) => {
     <>
       <div className="final">
         <p>
-          Notemos en el video en la montaña el sonido de viento junto con los sonidos de su
-          respiración, sus pasos, y la música distante del pueblo. Nos impresionó este video como
+          Notamos en el video en la montaña el sonido de viento junto con los sonidos de su
+          respiración, sus pasos, y la música distante del pueblo. Este video nos impresionó como
           simbólico de las relaciones poéticas, teológicas, y éticas entre la humanidad, la tierra,
-          y el cielo.
+          y el cielo. El viento del cielo y la respiración del hombre y la mujer son compartidos y
+          vinculados. Y estas vinculaciones no son abstractas, son particulares con volcanes,
+          montañas, valles, bosques, campos, aldeas, casas, y gente que tienen un nombre particular
+          y conocido.
         </p>
         <p className="accent">
           Breath is political. George Floyd’s words, “I can’t breathe,” have filled the lungs of
@@ -127,11 +130,13 @@ const Breath: React.FC<Props> = ({ onComplete }: Props) => {
           weaving is an expression of life.
         </p>
         <p style={{ marginBottom: "20px" }}>
-          Con las ciencias sabemos que hemos perjudicado a la tierra, pero esta sabiduría es
-          abstracta. No sabemos cómo cambiar nuestras vidas en concreto. En sus videos, vimos una
-          relación con la tierra, el cielo, el viento, y la lluvia que está vinculado con un lugar
-          específico, su tierra de Xjan Xwan. Queremos que los miembros de la audiencia reflejan en
-          sus propias relaciones concretos con sus ambientes.
+          Queremos que la audiencia reflexione en sus propias relaciones concretas con sus ambientes
+          y también aprenda un poco sobre su cultura y manera de vida. Queremos instilar en ellos
+          una curiosidad en cómo nuestras vidas son similares y diferentes a las de ustedes, e
+          incluso una curiosidad que inspire a unos a aprender su idioma Mam. Chjonte por la
+          oportunidad de ver sus videos, de aprender más sobre sus vidas, y de compartir en
+          artisticamente sus videos sobre la vida en Xjan Xwan y nuestras reflexiones sobre la
+          humanidad y el clima.
         </p>
       </div>
       <PullToContinue onContinue={incrementMeasure} videoNext />

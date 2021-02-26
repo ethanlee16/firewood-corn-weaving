@@ -55,11 +55,10 @@ const Outro: React.FC = () => {
           </p>
 
           <p>
-            Finalmente, quiero decir un gran chjonte a Mintz por todo el trabajo y labor que hace
-            por educar, enseñar, y comunicar sobre la cultura e idioma Mam. Como usted nos ha
-            enseñado: Qo xnaq’tzan tuj tzalajb’il tu’ntzan tjaw ch’iy qchwinqlal.
+            Finalmente, quiero dar un gran chjonte a Mintz por todo el trabajo y labor que hace por
+            educar, enseñar, y comunicar sobre la cultura e idioma Mam. Como usted nos ha enseñado:
           </p>
-
+          <p>Qo xnaq’tzan tuj tzalajb’il tu’ntzan tjaw ch’iy qchwinqlal. </p>
           <p>
             Chjonte kyiy,
             <br /> Christian b’ix Brandon
