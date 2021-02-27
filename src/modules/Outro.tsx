@@ -67,7 +67,7 @@ const Outro: React.FC = () => {
       </div>
       <div className="fundraise-container">
         <p>
-          In November of 2019, Hurricanes Eta and Iota hit Central America within weeks of each
+          In November of 2020, Hurricanes Eta and Iota hit Central America within weeks of each
           other. San Juan Atitán suffered damage to crops, buildings, and infrastructure, dangerous
           landslides, and the tragic death of family members.
         </p>
