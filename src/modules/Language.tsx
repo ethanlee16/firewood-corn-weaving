@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import FullscreenVideo from "../components/FullscreenVideo";
 import PullToContinue from "../components/PullToContinue";
+import SequenceThroughText from "../components/SequenceThroughText";
 import useWraparoundIndex from "../useWraparoundIndex";
 import "./Language.css";
 
@@ -203,10 +204,15 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
     </div>,
     <>
       <StandaloneQuote>
-        Now that I have brought this, I want to take a break. After the break, I’ll chop the wood.
-        It’s raining and I think I’ll chop it now. I’ll start chopping it now, so it’s ready for the
-        fire. Making fire is part of daily life and we know that making fire with wood is another
-        way to survive.
+        <SequenceThroughText durations={[8000, 9000, 5000, 12000, 3000, 5000]}>
+          <p>Now that I have brought this, I want to take a break.</p>
+          <p>After the break, I’ll chop the wood.</p>
+          <p>It’s raining and I think I’ll chop it now.</p>
+          <p>I’ll start chopping it now, so it’s ready for the fire.</p>
+          <p>Making fire is part of daily life</p>
+          <p>and we know that making fire with wood</p>
+          <p>is another way to survive.</p>
+        </SequenceThroughText>
       </StandaloneQuote>
       <PullToContinue onContinue={incrementMeasure} />
     </>,

@@ -72,7 +72,7 @@ const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
     <div className="preamble-container">
       <div className="preamble-instruction">
         <p>
-          <em>Firewood, Corn, Weaving</em> is a 20 minute experience for your smartphone web
+          <em>Firewood, Corn, Weaving</em> is a 30 minute experience for your smartphone web
           browser, made up of short films and text pieces. Make yourself comfortable, with space to
           watch, listen, read, and reflect.
         </p>
