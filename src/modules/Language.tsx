@@ -224,6 +224,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
           <>is another way to survive.</>
         </SequenceThroughText>
       </StandaloneQuote>
+      <audio src="https://d1d9il6x33qc20.cloudfront.net/shortquoteAUDIOONLY.m4a" hidden autoPlay />
       <PullToContinue onContinue={incrementMeasure} />
     </>,
     <div className="language-measure-three">
@@ -257,12 +258,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
         algunas oraciones para dar un poco de contexto y significado a la audiencia. Creemos que la
         audiencia puede entender mucho directamente de sus videos, o incluso mas, a pesar de la
         incomodidad de no entender todas las palabras, y la necesidad resultante de poner atención a
-        lo que si se puede entender. Como colonizadores, estamos acostumbrados a tener explicaciones
-        para todo en nuestro idioma. Pero creo que hay explicaciones que solo pueden ser entendidas
-        en la lengua en uso de un lugar. Y estos conocimientos vinculados a sus propias lenguas y
-        sus propios lugares son conocimientos, como nos muestran, que conllevan la sobrevivencia y
-        florecimiento de la humanidad y la tierra. Esperamos que la audiencia pueda aprender un poco
-        de estos temas profundos.
+        lo que si se puede entender.
         <PullToContinue onContinue={onComplete} videoNext />
       </StandaloneQuote>
     </>,
