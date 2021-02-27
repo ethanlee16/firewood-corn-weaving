@@ -100,7 +100,6 @@
   white-space: nowrap;
   transform: translateX(100vw);
   transition: 60s linear transform;
-  font-size: 8pt;
 }
 
 .marquee-left > p,
