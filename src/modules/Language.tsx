@@ -216,7 +216,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
       <PullToContinue onContinue={incrementMeasure} videoNext />
     </div>,
     <>
-      <StandaloneQuote subtitle>
+      <StandaloneQuote subtitle style={{ minHeight: "90%" }}>
         <SequenceThroughText durations={[8000, 9000, 5000, 12000, 3000, 5000, 0]}>
           <>Now that I have brought this, I want to take a break.</>
           <>After the break, I’ll chop the wood.</>
