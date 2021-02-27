@@ -8,15 +8,15 @@ enum WarningReason {
 const WarningMessage: Record<WarningReason, React.ReactNode> = {
   [WarningReason.NonMobileBrowser]: (
     <>
-      <p>Weather Bodies is best experienced on a mobile device.</p>
+      <p>Firewood, Corn, Weaving is best experienced on a mobile device.</p>
       <p>Please continue by visiting this on your phone.</p>
     </>
   ),
   [WarningReason.LandscapeMode]: (
     <>
       <p>
-        Weather Bodies is intended to be viewed in portrait mode on your phone. Please rotate your
-        device to the portrait orientation to continue.
+        Firewood, Corn, Weaving is intended to be viewed in portrait mode on your phone. Please
+        rotate your device to the portrait orientation to continue.
       </p>
     </>
   ),
