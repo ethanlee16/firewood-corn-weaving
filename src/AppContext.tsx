@@ -2,6 +2,21 @@ import React, { useEffect, useReducer } from "react";
 import { GeolocationPosition } from "@capacitor/core";
 import { mockCurrentWeather } from "./mockWeather";
 
+const currentMonth = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+][new Date().getMonth()];
+
 export type Action =
   | {
       type: "SET_CAMERA_STREAM";
@@ -22,12 +37,9 @@ export type Action =
 type AppContextStore = {
   cameraStream?: MediaStream;
   grantedCameraFromCapacitor?: boolean;
-  location: {
-    accurateLocation: boolean;
-    position: GeolocationPosition;
-  };
-  weatherInfo?: {
-    loadedFromAccurateLocation: boolean;
+  location?: GeolocationPosition;
+  weatherInfo: {
+    placeholder: boolean;
     temperature: number;
     description: string;
     chanceOfRain: number;
@@ -44,19 +56,23 @@ type AppContextStore = {
 };
 
 const initialState: AppContextStore = {
-  location: {
-    accurateLocation: false,
-    position: {
-      coords: {
-        // Default: Boston
-        accuracy: 50,
-        latitude: 42.372557,
-        longitude: -71.1223617,
-      },
-      timestamp: Date.now(),
-    },
+  weatherInfo: {
+    placeholder: true,
+    temperature: 70,
+    chanceOfRain: 0,
+    description: "clear",
+    dewPoint: 45,
+    windSpeed: 5,
+    humidity: 30,
+    pressureIndex: 30,
+    visibilityDistance: 5,
+    currentMonth,
+    windDirection: "northwest",
+    regionName: "your city",
+    averageRainfall: Math.floor(Math.random() * 20),
   },
 };
+
 const reducer = (state: AppContextStore, action: Action): AppContextStore => {
   switch (action.type) {
     case "SET_CAMERA_STREAM":
@@ -67,7 +83,7 @@ const reducer = (state: AppContextStore, action: Action): AppContextStore => {
     case "SET_GEOLOCATION_POSITION":
       return {
         ...state,
-        location: { accurateLocation: true, position: action.location },
+        location: action.location,
       };
     case "SET_WEATHER_INFO":
       return {
@@ -82,21 +98,6 @@ const reducer = (state: AppContextStore, action: Action): AppContextStore => {
   }
 };
 
-const currentMonth = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-][new Date().getMonth()];
-
 export const AppContext = React.createContext<[AppContextStore, (action: Action) => void]>([
   initialState,
   () => {},
@@ -106,59 +107,41 @@ const AppContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (state.location && (!state.weatherInfo || !state.weatherInfo.loadedFromAccurateLocation)) {
-      fetch("https://ethanlee16.api.stdlib.com/weather-bodies@dev/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    if (state.location && (!state.weatherInfo || state.weatherInfo.placeholder)) {
+      console.log("fetching for weather");
+      // fetch("https://ethanlee16.api.stdlib.com/weather-bodies@dev/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     lat: state.location.coords.latitude,
+      //     long: state.location.coords.longitude,
+      //   }),
+      // })
+      //   .then((response) => response.json())
+      //   .then((weather: any) => {
+      const weather = mockCurrentWeather;
+      dispatch({
+        type: "SET_WEATHER_INFO",
+        info: {
+          placeholder: false,
+          temperature: Math.round(weather.forecast.currently.temperature),
+          chanceOfRain: weather.forecast.currently.precipProbability * 100,
+          description: weather.forecast.currently.summary.toLowerCase(),
+          dewPoint: Math.round(weather.forecast.currently.dewPoint),
+          windSpeed: weather.forecast.currently.windSpeed,
+          humidity: weather.forecast.currently.humidity * 100,
+          pressureIndex: Math.round(weather.forecast.currently.pressure / 33.864),
+          visibilityDistance: Math.round(weather.forecast.currently.visibility / 1.609),
+          currentMonth,
+          windDirection: getCardinal(weather.forecast.currently.windBearing),
+          regionName: weather.location.data?.[0]?.locality,
+          averageRainfall: Math.floor(Math.random() * 20),
         },
-        body: JSON.stringify({
-          lat: state.location.position.coords.latitude,
-          long: state.location.position.coords.longitude,
-        }),
-      })
-        .then((response) => response.json())
-        .then((weather: any) => {
-          // const weather = mockCurrentWeather;
-          dispatch({
-            type: "SET_WEATHER_INFO",
-            info: {
-              loadedFromAccurateLocation: state.location.accurateLocation,
-              temperature: Math.round(weather.forecast.currently.temperature),
-              chanceOfRain: weather.forecast.currently.precipProbability * 100,
-              description: weather.forecast.currently.summary.toLowerCase(),
-              dewPoint: Math.round(weather.forecast.currently.dewPoint),
-              windSpeed: weather.forecast.currently.windSpeed,
-              humidity: weather.forecast.currently.humidity * 100,
-              pressureIndex: Math.round(weather.forecast.currently.pressure / 33.864),
-              visibilityDistance: Math.round(weather.forecast.currently.visibility / 1.609),
-              currentMonth,
-              windDirection: getCardinal(weather.forecast.currently.windBearing),
-              regionName: weather.location.data?.[0]?.locality,
-              averageRainfall: Math.floor(Math.random() * 20),
-            },
-          });
-        })
-        .catch(() => {
-          dispatch({
-            type: "SET_WEATHER_INFO",
-            info: {
-              loadedFromAccurateLocation: false,
-              temperature: 70,
-              chanceOfRain: 0,
-              description: "clear",
-              dewPoint: 45,
-              windSpeed: 5,
-              humidity: 30,
-              pressureIndex: 30,
-              visibilityDistance: 5,
-              currentMonth,
-              windDirection: "northwest",
-              regionName: "your city",
-              averageRainfall: Math.floor(Math.random() * 20),
-            },
-          });
-        });
+      });
+      // })
+      // .catch(() => {});
     }
   }, [state.location, state.weatherInfo]);
 
