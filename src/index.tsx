@@ -1,10 +1,18 @@
 import "@capacitor-community/camera-preview";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+Sentry.init({
+  dsn: "https://a6fc88d0cbc74dfb84cde9370a323fb2@o535635.ingest.sentry.io/5654366",
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 ReactDOM.render(
   <React.StrictMode>
