@@ -148,18 +148,21 @@ type StandaloneQuoteProps = React.PropsWithChildren<{
   className?: string;
   spanish?: boolean;
   subtitle?: boolean;
+  style?: React.CSSProperties;
 }>;
 export const StandaloneQuote = ({
   className,
   children,
   spanish,
   subtitle,
+  style,
 }: StandaloneQuoteProps) => {
   return (
     <div
       className={`language-quote-container ${spanish ? "language-quote-container-spanish" : ""} ${
         subtitle ? "language-quote-container-subtitle" : ""
       } ${className ? className : ""}`}
+      style={style}
     >
       <p className="language-quote">{children}</p>
     </div>
