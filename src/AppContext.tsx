@@ -109,39 +109,39 @@ const AppContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   useEffect(() => {
     if (state.location && (!state.weatherInfo || state.weatherInfo.placeholder)) {
       console.log("fetching for weather");
-      // fetch("https://ethanlee16.api.stdlib.com/weather-bodies@dev/", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     lat: state.location.coords.latitude,
-      //     long: state.location.coords.longitude,
-      //   }),
-      // })
-      //   .then((response) => response.json())
-      //   .then((weather: any) => {
-      const weather = mockCurrentWeather;
-      dispatch({
-        type: "SET_WEATHER_INFO",
-        info: {
-          placeholder: false,
-          temperature: Math.round(weather.forecast.currently.temperature),
-          chanceOfRain: weather.forecast.currently.precipProbability * 100,
-          description: weather.forecast.currently.summary.toLowerCase(),
-          dewPoint: Math.round(weather.forecast.currently.dewPoint),
-          windSpeed: weather.forecast.currently.windSpeed,
-          humidity: weather.forecast.currently.humidity * 100,
-          pressureIndex: Math.round(weather.forecast.currently.pressure / 33.864),
-          visibilityDistance: Math.round(weather.forecast.currently.visibility / 1.609),
-          currentMonth,
-          windDirection: getCardinal(weather.forecast.currently.windBearing),
-          regionName: weather.location.data?.[0]?.locality,
-          averageRainfall: Math.floor(Math.random() * 20),
+      fetch("https://ethanlee16.api.stdlib.com/weather-bodies@dev/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      });
-      // })
-      // .catch(() => {});
+        body: JSON.stringify({
+          lat: state.location.coords.latitude,
+          long: state.location.coords.longitude,
+        }),
+      })
+        .then((response) => response.json())
+        .then((weather: any) => {
+          // const weather = mockCurrentWeather;
+          dispatch({
+            type: "SET_WEATHER_INFO",
+            info: {
+              placeholder: false,
+              temperature: Math.round(weather.forecast.currently.temperature),
+              chanceOfRain: weather.forecast.currently.precipProbability * 100,
+              description: weather.forecast.currently.summary.toLowerCase(),
+              dewPoint: Math.round(weather.forecast.currently.dewPoint),
+              windSpeed: weather.forecast.currently.windSpeed,
+              humidity: weather.forecast.currently.humidity * 100,
+              pressureIndex: Math.round(weather.forecast.currently.pressure / 33.864),
+              visibilityDistance: Math.round(weather.forecast.currently.visibility / 1.609),
+              currentMonth,
+              windDirection: getCardinal(weather.forecast.currently.windBearing),
+              regionName: weather.location.data?.[0]?.locality,
+              averageRainfall: Math.floor(Math.random() * 20),
+            },
+          });
+        })
+        .catch(() => {});
     }
   }, [state.location, state.weatherInfo]);
 
