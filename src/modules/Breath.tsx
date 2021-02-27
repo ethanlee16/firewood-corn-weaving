@@ -39,7 +39,7 @@ const VideoCallMeasure = ({
   return (
     <div className="video-call">
       <FullscreenVideo
-        videoId="08-Weaving-Webcam-01"
+        videoId="08-Weaving-Combo"
         onPlay={
           !showCamera
             ? () => {

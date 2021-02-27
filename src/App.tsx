@@ -54,11 +54,11 @@ function App() {
       <Intro />
       <PullToContinue onContinue={advanceModule} videoNext />
     </>,
-    <FullscreenVideo videoId="02-Firewood-01" onComplete={advanceModule} />,
+    <FullscreenVideo videoId="02-Firewood-01" onComplete={advanceModule} hasSubtitles />,
     <Language onComplete={advanceModule} />,
     <FullscreenVideo videoId="05-Corn-01" onComplete={advanceModule} hasSubtitles />,
     <Metrics onComplete={advanceModule} />,
-    <FullscreenVideo videoId="06-Weaving-full" onComplete={advanceModule} />,
+    <FullscreenVideo videoId="06-Weaving-full" onComplete={advanceModule} hasSubtitles />,
     <Breath onComplete={advanceModule} />,
     <Outro />,
   ];

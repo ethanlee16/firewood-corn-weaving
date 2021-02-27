@@ -116,7 +116,7 @@ const HiddenTextOne = () => {
       </p>
       <p>
         Jun q’olb’elb’il te kyiy! Wiy nb’i Christian. Tb’i wuk’li no’k tb’i te Brandon. Naj qini max
-        Boston, Massachusetts, tuj t-tanm meẍ. Xna’tzal qini tuj Yale. Nchin xnaq’tzani ti’j qyol.
+        Boston, Massachusetts, tuj t-tanm mexh. Xna’tzal qini tuj Yale. Nchin xnaq’tzani ti’j qyol.
         Waji tu’n tel nni’yi ti’j qa tnam, xjal, tx’otx’, b’ix yol tuj Xjan Xwan. Naj Brandon max
         Alemania. Echl Brandon. Chjonte kyiy tu’n ma tzaj t-txolb’ani tyol b’ix tchwinqlali. Por
         ahora, voy a escribirles en español, como un idioma compartiendo entre nosotros dos, anqué
@@ -138,12 +138,6 @@ const HiddenTextOne = () => {
         de presentar sus videos estructurados con textos en una manera que refleje los temas
         profundos de la vida, la sobrevivencia, el medio ambiente, y el clima tanto en Xjan Xwan
         como en su propio lugar.
-      </p>
-      <p>
-        Al hablar lenguas colonizantes, no quisimos traducir sus videos al inglés o español, pero
-        quisimos destacar momentos significativos de su experiencia, comunicándolos a una audencia
-        occidental. En los textos en español voy a explicar un poco nuestras motivaciones hacia la
-        presentación artística de sus videos.
       </p>
     </div>
   );
@@ -175,10 +169,10 @@ const HiddenTextTwo = () => {
   return (
     <StandaloneQuote spanish>
       <p>
-        Aunque nunca podemos traducir la esencia entera de sus videos a inglés o en español, como
-        lenguas del colonizador, queríamos destacar unos momentos significados a la audiencia
-        occidental. En los textos que viene en español, voy a explicar un poco do nuestras
-        motivaciones en la presentación artística de sus videos.
+        Al hablar lenguas colonizantes, no quisimos traducir sus videos al inglés o español, pero
+        quisimos destacar momentos significativos de su experiencia, comunicándolos a una audencia
+        occidental. En los textos en español voy a explicar un poco nuestras motivaciones hacia la
+        presentación artística de sus videos.
       </p>
       {quotes.map((quote: string, index: number) => (
         <Marquee
