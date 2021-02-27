@@ -22,8 +22,12 @@ export type Action =
 type AppContextStore = {
   cameraStream?: MediaStream;
   grantedCameraFromCapacitor?: boolean;
-  location: GeolocationPosition;
+  location: {
+    accurateLocation: boolean;
+    position: GeolocationPosition;
+  };
   weatherInfo?: {
+    loadedFromAccurateLocation: boolean;
     temperature: number;
     description: string;
     chanceOfRain: number;
@@ -41,13 +45,16 @@ type AppContextStore = {
 
 const initialState: AppContextStore = {
   location: {
-    coords: {
-      // Default: Boston
-      accuracy: 50,
-      latitude: 42.372557,
-      longitude: -71.1223617,
+    accurateLocation: false,
+    position: {
+      coords: {
+        // Default: Boston
+        accuracy: 50,
+        latitude: 42.372557,
+        longitude: -71.1223617,
+      },
+      timestamp: Date.now(),
     },
-    timestamp: Date.now(),
   },
 };
 const reducer = (state: AppContextStore, action: Action): AppContextStore => {
@@ -60,7 +67,7 @@ const reducer = (state: AppContextStore, action: Action): AppContextStore => {
     case "SET_GEOLOCATION_POSITION":
       return {
         ...state,
-        location: action.location,
+        location: { accurateLocation: true, position: action.location },
       };
     case "SET_WEATHER_INFO":
       return {
@@ -99,15 +106,15 @@ const AppContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (state.location && !state.weatherInfo) {
+    if (state.location && (!state.weatherInfo || !state.weatherInfo.loadedFromAccurateLocation)) {
       fetch("https://ethanlee16.api.stdlib.com/weather-bodies@dev/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          lat: state.location.coords.latitude,
-          long: state.location.coords.longitude,
+          lat: state.location.position.coords.latitude,
+          long: state.location.position.coords.longitude,
         }),
       })
         .then((response) => response.json())
@@ -116,6 +123,7 @@ const AppContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
           dispatch({
             type: "SET_WEATHER_INFO",
             info: {
+              loadedFromAccurateLocation: state.location.accurateLocation,
               temperature: Math.round(weather.forecast.currently.temperature),
               chanceOfRain: weather.forecast.currently.precipProbability * 100,
               description: weather.forecast.currently.summary.toLowerCase(),
@@ -135,6 +143,7 @@ const AppContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
           dispatch({
             type: "SET_WEATHER_INFO",
             info: {
+              loadedFromAccurateLocation: false,
               temperature: 70,
               chanceOfRain: 0,
               description: "clear",
