@@ -144,13 +144,22 @@ const HiddenTextOne = () => {
   );
 };
 
+type StandaloneQuoteProps = React.PropsWithChildren<{
+  className?: string;
+  spanish?: boolean;
+  subtitle?: boolean;
+}>;
 export const StandaloneQuote = ({
+  className,
   children,
   spanish,
-}: React.PropsWithChildren<{ spanish?: boolean }>) => {
+  subtitle,
+}: StandaloneQuoteProps) => {
   return (
     <div
-      className={`language-quote-container ${spanish ? "language-quote-container-spanish" : ""}`}
+      className={`language-quote-container ${spanish ? "language-quote-container-spanish" : ""} ${
+        subtitle ? "language-quote-container-subtitle" : ""
+      } ${className ? className : ""}`}
     >
       <p className="language-quote">{children}</p>
     </div>
@@ -168,7 +177,7 @@ const positions = ["right", "left", "top", "bottom"] as const;
 
 const HiddenTextTwo = () => {
   return (
-    <StandaloneQuote spanish>
+    <StandaloneQuote spanish className="language-quote-container-marquee-spaced">
       <p>
         Al hablar lenguas colonizantes, no quisimos traducir sus videos al inglés o español, pero
         quisimos destacar momentos significativos de su experiencia, comunicándolos a una audencia
@@ -177,6 +186,7 @@ const HiddenTextTwo = () => {
       </p>
       {quotes.map((quote: string, index: number) => (
         <Marquee
+          key={index}
           position={positions[index]}
           delay={positions[index] === "right" || positions[index] === "left" ? 1000 : 0}
           durationPerChar={75}
@@ -203,15 +213,15 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
       <PullToContinue onContinue={incrementMeasure} videoNext />
     </div>,
     <>
-      <StandaloneQuote>
-        <SequenceThroughText durations={[8000, 9000, 5000, 12000, 3000, 5000]}>
-          <p>Now that I have brought this, I want to take a break.</p>
-          <p>After the break, I’ll chop the wood.</p>
-          <p>It’s raining and I think I’ll chop it now.</p>
-          <p>I’ll start chopping it now, so it’s ready for the fire.</p>
-          <p>Making fire is part of daily life</p>
-          <p>and we know that making fire with wood</p>
-          <p>is another way to survive.</p>
+      <StandaloneQuote subtitle>
+        <SequenceThroughText durations={[8000, 9000, 5000, 12000, 3000, 5000, 0]}>
+          <>Now that I have brought this, I want to take a break.</>
+          <>After the break, I’ll chop the wood.</>
+          <>It’s raining and I think I’ll chop it now.</>
+          <>I’ll start chopping it now, so it’s ready for the fire.</>
+          <>Making fire is part of daily life</>
+          <>and we know that making fire with wood</>
+          <>is another way to survive.</>
         </SequenceThroughText>
       </StandaloneQuote>
       <PullToContinue onContinue={incrementMeasure} />

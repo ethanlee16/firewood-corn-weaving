@@ -3,7 +3,6 @@ import PullToContinue from "../components/PullToContinue";
 import useWraparoundIndex from "../useWraparoundIndex";
 
 import "./Metrics.css";
-import MetricsSectionFour from "./Metrics/SectionFour";
 
 import MetricsSectionOne from "./Metrics/SectionOne";
 import MetricsSectionThree from "./Metrics/SectionThree";
@@ -17,13 +16,7 @@ const Title = () => {
   );
 };
 
-const measures = [
-  <Title />,
-  <MetricsSectionOne />,
-  <MetricsSectionTwo />,
-  <MetricsSectionThree />,
-  <MetricsSectionFour />,
-];
+const measures = [<Title />, <MetricsSectionOne />, <MetricsSectionTwo />, <MetricsSectionThree />];
 
 type Props = {
   onComplete: () => void;

@@ -51,7 +51,7 @@ const MetricsSectionTwo: React.FC = () => {
   const typedOptions = useMemo(
     () => ({
       strings: [
-        `Perhaps you checked the <span id="${weatherFlicker}">weather</span> this morning. ${weatherInfo?.temperature} degrees and ${weatherInfo?.description}. There’s a ${weatherInfo?.chanceOfRain}% chance of rain tomorrow. Is that a <span id="${statusFlicker}">normal</span> amount of rain for ${weatherInfo?.regionName} in ${weatherInfo?.currentMonth}? Is this ${weatherInfo?.currentMonth} warmer than last? It's supposed to be warmer. But is it supposed to get rainier?^1000
+        `Perhaps you checked the <span id="${weatherFlicker}">weather</span> this morning. ${weatherInfo?.temperature} degrees and ${weatherInfo?.description}. There’s a ${weatherInfo?.chanceOfRain}% chance of rain tomorrow. Is that <span id="${statusFlicker}">a normal</span> amount of rain for ${weatherInfo?.regionName} in ${weatherInfo?.currentMonth}? Is this ${weatherInfo?.currentMonth} warmer than last? It's supposed to be warmer. But is it supposed to get rainier?^1000
 
 Today the humidity is ${weatherInfo?.humidity}%, the dew point at ${weatherInfo?.dewPoint} degrees Fahrenheit, the pressure index at ${weatherInfo?.pressureIndex} in Hg, the UV index low, the visibility at ${weatherInfo?.visibilityDistance} miles, and a ${weatherInfo?.windSpeed} mile per hour wind from the ${weatherInfo?.windDirection}.^1000
 
@@ -61,7 +61,7 @@ Temperature.^1000
 
 The temperature is not the weather.^1000`,
       ],
-      typeSpeed: 10,
+      typeSpeed: 5,
       showCursor: false,
       onComplete: () => setFinishedTyping(true),
     }),
@@ -184,7 +184,8 @@ The temperature is not the weather.^1000`,
               { duration: 11000, minFlicker: 350, maxFlicker: 350 },
               { duration: 7000, minFlicker: 1000, maxFlicker: 2200 },
             ]}
-          />{" "}
+          />
+          <br />
           is the weather.
         </p>
       )}

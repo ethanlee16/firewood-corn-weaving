@@ -40,6 +40,13 @@ const FullscreenVideo: React.FC<Props> = ({
         hls.loadSource(url);
         hls.attachMedia(video);
       }
+      const trackElem = video.querySelector("track");
+      if (trackElem && trackElem.track.cues) {
+        Array.from(trackElem.track.cues).forEach((cue) => {
+          // @ts-ignore
+          cue.line = -6;
+        });
+      }
     }
     const checkForPlayback = setInterval(() => {
       if (video && video.paused && !video.ended) {

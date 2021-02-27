@@ -1,7 +1,6 @@
 .breath-container {
   height: calc(100% - 100px);
   min-height: 100%;
-  padding: 20px;
 }
 
 .accent {
@@ -39,13 +38,19 @@
 .video-call-overlay {
   transition: 0.3s ease all;
   transition-delay: 0.2s;
-  padding: 10px;
+  padding: 30px;
+  margin-bottom: 10px;
   font-size: 14pt;
   transform: translateY(120%);
   opacity: 0;
+  background-color: #fdf6e3;
 }
 
 .video-call-overlay-show {
   transform: translateY(0);
   opacity: 1;
+}
+
+.final {
+  padding: 20px;
 }

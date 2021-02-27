@@ -61,7 +61,7 @@ const VideoCallMeasure = ({
       />
       <div className={`video-call-overlay ${showCamera ? "video-call-overlay-show" : ""}`}>
         {showCamera && (
-          <SequenceThroughText duration={8000}>
+          <SequenceThroughText duration={10000}>
             {`Climate change challenges the agrarian livelihoods of Mayans, just as it challenges those most dependent on the weather throughout the world. But the politics of climate change have been animated by ideas of apocalypse, disruption, and death where indigenous Americans have already survived the apocalypse, disruption, and death of colonization. The human response to climate change must be animated by something other than death. It must be reanimated through attention to the embodied experience of weather.`
               .split(".")
               .filter((sentence: string) => sentence.trim())

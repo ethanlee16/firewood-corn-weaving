@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/hls.js": "^0.13.3"
+    "@types/hls.js": "^0.13.3",
+    "surge": "^0.21.7"
   }
 }

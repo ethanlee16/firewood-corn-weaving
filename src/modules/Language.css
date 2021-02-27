@@ -1,8 +1,3 @@
-.language-container {
-  height: calc(100% - 100px);
-  min-height: 100%;
-}
-
 .hidden-text-one-container {
   padding: 20px;
 }
@@ -13,7 +8,7 @@
 }
 
 .language-measure-three {
-  height: calc(100% - 100px);
+  height: calc(100% - 80px);
 }
 
 .language-measure-three .press-to-continue {
@@ -30,15 +25,27 @@
 .language-quote-container {
   box-sizing: border-box;
   height: 100%;
-  padding: 50px;
-  padding-bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
+}
+
+.language-quote-container-marquee-spaced {
+  padding: 50px;
+  padding-bottom: 0;
 }
 
 .language-quote-container-spanish {
   background-color: #eee8d5;
+}
+
+.language-quote-container-subtitle .language-quote {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  color: white;
+  margin-top: 100%;
+  padding: 10px;
 }
 
 .language-quote {
@@ -55,6 +62,7 @@
 
 .language-quote-container-spanish .language-quote {
   font-family: monospace;
+  font-size: 12pt;
 }
 
 .marquee {
@@ -92,6 +100,7 @@
   white-space: nowrap;
   transform: translateX(100vw);
   transition: 60s linear transform;
+  font-size: 8pt;
 }
 
 .marquee-left > p,

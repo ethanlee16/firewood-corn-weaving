@@ -28,6 +28,7 @@
 .video::cue {
   font-family: Lora, serif;
   background-color: rgba(0, 0, 0, 0.7);
+  text-shadow: 0 3px 10px black;
   color: white;
   width: 90%;
   margin-bottom: 60px;
