@@ -62,7 +62,11 @@ const BrowserWarning: React.FC<Props> = ({ onSelectNavigationLink }: Props) => {
         setOrientation(window.orientation === 0 ? "portrait" : "landscape");
       }
     }
-    window.addEventListener("orientationchange", orientationChangeHandler);
+    if (window.screen?.orientation) {
+      window.screen.orientation.onchange = orientationChangeHandler;
+    } else {
+      window.addEventListener("orientationchange", orientationChangeHandler);
+    }
     return () => {
       window.removeEventListener("orientationchange", orientationChangeHandler);
     };
