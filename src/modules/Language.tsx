@@ -149,9 +149,6 @@ const HiddenTextOne = () => {
   );
 };
 
-/**
- * TODO: Subtitle format, or centered.
- */
 export const StandaloneQuote = ({
   children,
   spanish,

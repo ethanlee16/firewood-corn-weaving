@@ -13,10 +13,43 @@ const MetricsSectionOne: React.FC = () => {
 
   return (
     <div className="metrics-one">
-      <p>Weather is </p>
       <p>
         <TextFlicker
-          textSamples={["always everywhere", "in every place", "endlessly", "at all times"]}
+          textSamples={[
+            "Weather is",
+            "Climate is",
+            "Rain is",
+            "Snow is",
+            "Hail is",
+            "Thunder is",
+            "Lightning is",
+            "Fog is",
+            "Drought is",
+            "Wind is",
+            "Storms are",
+            "Clouds are",
+            "Temperature is",
+            "Humidity is",
+          ]}
+          sequence={[
+            { duration: 4000, minFlicker: 40, maxFlicker: 100 },
+            { duration: 8000, minFlicker: 1000, maxFlicker: 2200 },
+            { duration: 9000, minFlicker: 40, maxFlicker: 100 },
+            { duration: 16000, minFlicker: 1000, maxFlicker: 2200 },
+            { duration: 11000, minFlicker: 350, maxFlicker: 350 },
+            { duration: 7000, minFlicker: 1000, maxFlicker: 2200 },
+          ]}
+        />{" "}
+      </p>
+      <p>
+        <TextFlicker
+          textSamples={[
+            "always everywhere",
+            "always somewhere",
+            "in every place",
+            "endlessly",
+            "at all times",
+          ]}
           sequence={[
             { duration: 4000, minFlicker: 40, maxFlicker: 100 },
             { duration: 8000, minFlicker: 1000, maxFlicker: 2200 },

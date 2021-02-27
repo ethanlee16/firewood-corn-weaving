@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import shuffle from "../shuffle";
 
-type TimeWindow = {
+export type TimeWindow = {
   minFlicker: number;
   maxFlicker: number;
   duration: number;
@@ -12,7 +12,10 @@ type Props = {
   sequence: TimeWindow[];
 };
 
-const TextFlicker: React.FC<Props> = ({ textSamples, sequence }: Props) => {
+export const useTextFlickerSample = <T extends React.ReactNode = React.ReactNode>(
+  textSamples: T[],
+  sequence: TimeWindow[]
+): T => {
   const [index, setIndex] = useState(0);
   const [textSampleIndex, setTextSampleIndex] = useState(0);
 
@@ -63,7 +66,12 @@ const TextFlicker: React.FC<Props> = ({ textSamples, sequence }: Props) => {
     };
   }, [sequence.length, timeWindow]);
 
-  return <>{randomizedTextSamples.current[textSampleIndex]}</>;
+  return randomizedTextSamples.current[textSampleIndex];
+};
+
+const TextFlicker: React.FC<Props> = ({ textSamples, sequence }: Props) => {
+  const sample = useTextFlickerSample(textSamples, sequence);
+  return <>{sample}</>;
 };
 
 export default TextFlicker;

@@ -39,8 +39,6 @@
 .video-call-overlay {
   transition: 0.3s ease all;
   transition-delay: 0.2s;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
   padding: 10px;
   font-size: 14pt;
   transform: translateY(120%);

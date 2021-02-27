@@ -91,7 +91,7 @@ const Breath: React.FC<Props> = ({ onComplete }: Props) => {
       onComplete={incrementMeasure}
     />,
     <>
-      <StandaloneQuote>
+      <StandaloneQuote spanish>
         Como colonizadores, nos estamos acostumbrados a tener explicaciones por todo en nuestro
         idioma. Pero yo creo que hay explicaciones que solo pueden ser entendido en su propia lengua
         en su propio lugar. Y estos conocimientos vinculados a sus propias lenguas y sus propios
