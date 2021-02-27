@@ -5,10 +5,11 @@ import { AppContext } from "../AppContext";
 import "./Preamble.css";
 
 type Props = {
+  revisiting?: boolean;
   onComplete: (status: "complete" | "skippable") => void;
 };
 
-const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
+const Preamble: React.FC<Props> = ({ revisiting, onComplete }: Props) => {
   const [, dispatch] = useContext(AppContext);
   const [grantedLocation, setGrantedLocation] = useState(false);
   const [grantedCamera, setGrantedCamera] = useState(false);
@@ -71,16 +72,26 @@ const Preamble: React.FC<Props> = ({ onComplete }: Props) => {
   return (
     <div className="preamble-container">
       <div className="preamble-instruction">
-        <p>
-          <em>Firewood, Corn, Weaving</em> is a 30 minute experience for your smartphone web
-          browser, made up of short films and text pieces. Make yourself comfortable, with space to
-          watch, listen, read, and reflect.
-        </p>
-        <p>
-          <em>Firewood, Corn, Weaving</em> requires temporary access to your phone’s location data
-          and camera as part of the experience. Please give access to these features when prompted.
-          This information is not stored in any form.
-        </p>
+        {revisiting ? (
+          <p>
+            <em>Firewood, Corn, Weaving</em> requires temporary permission to your phone's location
+            data and camera again to continue from where you left off. This information is not
+            stored in any form.
+          </p>
+        ) : (
+          <>
+            <p>
+              <em>Firewood, Corn, Weaving</em> is a 30 minute experience for your smartphone web
+              browser, made up of short films and text pieces. Make yourself comfortable, with space
+              to watch, listen, read, and reflect.
+            </p>
+            <p>
+              <em>Firewood, Corn, Weaving</em> requires temporary access to your phone’s location
+              data and camera as part of the experience. Please give access to these features when
+              prompted. This information is not stored in any form.
+            </p>
+          </>
+        )}
         <div
           className="preamble-instruction preamble-instruction-hidden"
           style={{ left: "20%", top: "-40%" }}

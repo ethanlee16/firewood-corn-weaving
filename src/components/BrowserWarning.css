@@ -9,8 +9,57 @@
   z-index: 9999;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 0 50px;
   text-align: center;
+}
+
+.navigation-menu {
+  text-align: left;
+  margin-bottom: 10%;
+}
+
+.navigation-menu h1 {
+  font-size: 18pt;
+  margin: 0;
+}
+
+.navigation-menu .return-message {
+  margin: 0;
+  margin-bottom: 30px;
+  opacity: 0.6;
+}
+
+.navigation-link-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navigation-link-group {
+  flex: 1 1 33%;
+  margin-bottom: 20px;
+}
+
+.navigation-link {
+  align-items: center;
+  font-size: 11pt;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-right: 30%;
+  margin-top: 5px;
+}
+
+.navigation-link p {
+  margin: 0;
+  display: inline;
+}
+
+.navigation-link .arrow {
+  margin-left: 10px;
+}
+
+.navigation-link .video-icon {
+  margin-right: 5px;
 }

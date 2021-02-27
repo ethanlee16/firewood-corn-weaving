@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import "./App.css";
 import BrowserWarning from "./components/BrowserWarning";
@@ -22,13 +22,27 @@ const Title = () => (
 );
 
 function App() {
-  const [moduleIndex, setModuleIndex] = useState(0);
+  const savedLastModule = useRef(new URL(window.location.href).searchParams.get("m"));
+  const [moduleIndex, setModuleIndex] = useState<number>(savedLastModule.current ? 1 : 0);
   const [preambleStatus, setPreambleStatus] = useState<string | undefined>();
+
+  useEffect(() => {
+    if (moduleIndex > 1) {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("m", String(moduleIndex));
+      window.history.replaceState({}, "Firewood, Corn, Weaving", nextUrl.toString());
+    }
+  }, [moduleIndex]);
 
   function advanceModule(): void {
     setModuleIndex((prevIndex: number) => {
       if (prevIndex === modules.length - 1) {
         return 0;
+      }
+      if (savedLastModule.current && prevIndex === 1) {
+        const moveTo = savedLastModule.current;
+        savedLastModule.current = null;
+        return Number(moveTo);
       }
       return prevIndex + 1;
     });
@@ -40,7 +54,10 @@ function App() {
       <PullToContinue onContinue={advanceModule} />
     </>,
     <>
-      <Preamble onComplete={(status) => setPreambleStatus(status)} />
+      <Preamble
+        onComplete={(status) => setPreambleStatus(status)}
+        revisiting={savedLastModule.current !== null}
+      />
       {preambleStatus && (
         <PullToContinue
           onContinue={advanceModule}
@@ -67,7 +84,10 @@ function App() {
     <AppContextProvider>
       <div className="App" id="scrollable">
         {modules[moduleIndex]}
-        <BrowserWarning />
+        <BrowserWarning
+          currentModuleIndex={moduleIndex}
+          onSelectNavigationLink={(index: number) => setModuleIndex(index)}
+        />
       </div>
     </AppContextProvider>
   );
