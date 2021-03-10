@@ -121,9 +121,7 @@ const HiddenTextOne = () => {
         Waji tu’n tel nni’yi ti’j qa tnam, xjal, tx’otx’, b’ix yol tuj Xjan Xwan. Naj Brandon max
         Alemania. Echl Brandon. Chjonte kyiy tu’n ma tzaj t-txolb’ani tyol b’ix tchwinqlali. Por
         ahora, voy a escribirles en español, como un idioma compartiendo entre nosotros dos, anqué
-        en el futuro espero que podemos conversar en su propio idioma Mam. Por ahora, voy a
-        escribirles en español, idioma que compartimos ustedes y yo, aunque en el futuro espero que
-        podamos conversar en su propio idioma, Mam.
+        en el futuro espero que podemos conversar en su propio idioma Mam.
       </p>
       <p>
         Personalmente, como estudiante e investigador tengo interés en como los seres humanos se

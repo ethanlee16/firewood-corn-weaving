@@ -109,9 +109,7 @@ const Breath: React.FC<Props> = ({ onComplete }: Props) => {
           respiración, sus pasos, y la música distante del pueblo. Este video nos impresionó como
           simbólico de las relaciones poéticas, teológicas, y éticas entre la humanidad, la tierra,
           y el cielo. El viento del cielo y la respiración del hombre y la mujer son compartidos y
-          vinculados. Y estas vinculaciones no son abstractas, son particulares con volcanes,
-          montañas, valles, bosques, campos, aldeas, casas, y gente que tienen un nombre particular
-          y conocido.
+          vinculados.
         </p>
         <p className="accent">
           Breath is political. George Floyd’s words, “I can’t breathe,” have filled the lungs of
@@ -119,9 +117,8 @@ const Breath: React.FC<Props> = ({ onComplete }: Props) => {
           of life.
         </p>
         <p>
-          El viento del cielo y la respiración del hombre y mujer son compartidos y vinculados. En
-          la cultura occidental vivimos como esta relación no existe, como no importa la tierra por
-          la sobrevivencia y florecimiento de las sociedades y culturas del mundo.{" "}
+          Y estas vinculaciones no son abstractas, son particulares con volcanes, montañas, valles,
+          bosques, campos, aldeas, casas, y gente que tienen un nombre particular y conocido.
         </p>
         <p className="accent">
           The Mam Mayans also know the deadly restriction of white supremacy. In surviving 500 years
