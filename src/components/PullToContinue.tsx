@@ -23,7 +23,8 @@ const PullToContinue: React.FC<Props> = ({
   const pullStart = useCallback(function pullStart(event: TouchEvent) {
     const scrollContainer = document.querySelector("#scrollable")!;
     const scrolledToEnd =
-      scrollContainer.scrollHeight - scrollContainer.scrollTop === scrollContainer.clientHeight;
+      scrollContainer.scrollHeight - Math.ceil(scrollContainer.scrollTop) >=
+      scrollContainer.clientHeight;
     if (typeof event.targetTouches !== "undefined" && scrolledToEnd) {
       const touch = event.targetTouches[0];
       setTouchStartY(touch.screenY);
