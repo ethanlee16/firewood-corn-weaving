@@ -100,8 +100,10 @@ const FullscreenVideo: React.FC<Props> = ({
         <button
           className="force-playback"
           onClick={() => {
-            video?.play();
-            setVideoNotPlaying(false);
+            video
+              ?.play()
+              .then(() => setVideoNotPlaying(false))
+              .catch(() => setVideoNotPlaying(true));
           }}
         >
           ▶️

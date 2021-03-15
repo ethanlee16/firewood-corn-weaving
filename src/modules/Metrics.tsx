@@ -34,7 +34,7 @@ const Metrics: React.FC<Props> = ({ onComplete }: Props) => {
       {measures[measure]}
       <PullToContinue
         onContinue={measure < measures.length - 1 ? incrementMeasure : onComplete}
-        videoNext={measure === measures.length - 1}
+        videoNext={measure >= measures.length - 2}
       />
     </div>
   );

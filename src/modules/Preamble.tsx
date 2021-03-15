@@ -86,6 +86,10 @@ const Preamble: React.FC<Props> = ({ revisiting, onComplete }: Props) => {
               to watch, listen, read, and reflect.
             </p>
             <p>
+              To return to specific portions of the piece, rotate your phone to landscape for a
+              navigation menu.
+            </p>
+            <p>
               <em>Firewood, Corn, Weaving</em> requires temporary access to your phone’s location
               data and camera as part of the experience. Please give access to these features when
               prompted. This information is not stored in any form.
