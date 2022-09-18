@@ -225,7 +225,7 @@ const Language: React.FC<Props> = ({ onComplete }: Props) => {
           <>is another way to survive.</>
         </SequenceThroughText>
       </StandaloneQuote>
-      <audio src="https://d1d9il6x33qc20.cloudfront.net/shortquoteAUDIOONLY.m4a" hidden autoPlay />
+      <audio src="https://d2ltbdn9dvbo00.cloudfront.net/shortquoteAUDIOONLY.m4a" hidden autoPlay />
       <PullToContinue onContinue={incrementMeasure} />
     </>,
     <div className="language-measure-three">

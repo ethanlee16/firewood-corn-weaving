@@ -12,11 +12,11 @@ type Props = React.PropsWithChildren<{
 }>;
 
 function buildCDNPath(videoId: string): string {
-  return `https://d1d9il6x33qc20.cloudfront.net/${videoId}/playlist.m3u8`;
+  return `https://d2ltbdn9dvbo00.cloudfront.net/${videoId}/playlist.m3u8`;
 }
 
 function buildCaptionPath(videoId: string): string {
-  return `https://weather-bodies-assets.s3-us-west-1.amazonaws.com/${videoId}/subtitles_new.vtt`;
+  return `https://firewood-corn-weaving.s3-us-west-2.amazonaws.com/${videoId}/subtitles_new.vtt`;
 }
 
 const FullscreenVideo: React.FC<Props> = ({
@@ -81,7 +81,12 @@ const FullscreenVideo: React.FC<Props> = ({
       onPlay={onPlay}
     >
       {hasSubtitles ? (
-        <track default kind="captions" srcLang="en" src={buildCaptionPath(videoId)} />
+        <track
+          default
+          kind="captions"
+          srcLang="en"
+          src={buildCaptionPath(videoId)}
+        />
       ) : (
         <></>
       )}
